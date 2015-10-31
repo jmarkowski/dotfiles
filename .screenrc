@@ -1,0 +1,59 @@
+# basic settings... self explainatory
+nethack on
+deflogin on
+autodetach on
+startup_message off
+
+# the dash makes it a login shell
+defshell -$SHELL
+shell -$SHELL
+activity ""
+bell_msg ""
+vbell off
+vbell_msg ""
+defscrollback 2048
+nonblock on
+defutf8 on
+defbce on
+defflow off
+msgwait 1
+altscreen on
+
+# only Shift+k to kill - prevent accidents
+# bind k
+# bind ^k
+# bind K kill
+
+# j to move down a window, k to move up. like VIM.
+bind j focus down
+bind k focus up
+
+# resizing
+bind = resize =
+bind + resize +3
+bind - resize -3
+
+# Use the \ key instead of "C-a" for commands
+# escape ^\\\
+
+term screen-256color
+terminfo rxvt* 'ti@:te@:Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# Here comes the pain...
+hardstatus alwayslastline "%{=b ky}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b ky}[%n %t]%{= kw}%?%+Lw%?%= %{=b ky})(%D %Y-%m-%d %0C%A)"
+
+#let pgup/pgdn scroll under urxvt (see .Xdefaults)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+
+# Display a caption string below, appearing like tabs and
+# displaying the window number and application name (by default)
+#caption always
+#caption string "%{kw}%-w%{wr}%n %t%{-}%+w"
+
+# Default screens
+screen -t terminal
+screen -t code
+
+# Select the first screen
+select 0

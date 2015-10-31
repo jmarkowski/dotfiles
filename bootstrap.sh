@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+error () {
+    echo "ERROR: $*"
+}
+
+bail () {
+    error $*
+    exit 99
+}
+
+check_command () {
+    command -v $1 >/dev/null 2>&1 || bail "Command '$1' not found."
+}
+
+print () {
+    echo -e "    $*"
+}
+
+ask() {
+    while true; do
+
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"
+            default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"
+            default=N
+        else
+            prompt="y/n"
+            default=
+        fi
+
+        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
+        read -p "    $1 [$prompt] " REPLY </dev/tty
+
+        # Default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # Check if the reply is valid
+        case "$REPLY" in
+            Y*|y*) return 0 ;;
+            N*|n*) return 1 ;;
+        esac
+
+    done
+}
+
+DOTFILES_DIR=$HOME/.dotfiles
+
+check_command rsync
+check_command git
+check_command read
+check_command find
+
+print "Current directory: $PWD"
+if [ $PWD != $DOTFILES_DIR ]; then
+    bail "Script must be run within $DOTFILES_DIR";
+fi
+
+print "Fetching submodules ..."
+
+git submodule init
+git submodule update
+
+TEMP_DIR=`mktemp -d`
+
+print "Copied dotfiles into temporary directory: $TEMP_DIR"
+rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
+                                --exclude=.gitmodules \
+                                --exclude=bootstrap.sh \
+                                --exclude=LICENSE \
+                                --exclude=README.md \
+                                 -ah
+
+print ""
+print "Copying dotfiles to: $HOME/"
+print ""
+
+for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
+do
+    do_copy=true
+    target_file=$HOME/$file
+    is_file_different=$(rsync $TEMP_DIR/$file $HOME/ -nc --out-format %i)
+
+    if [[ $is_file_different ]] && [[ $is_file_different != *"+" ]] \
+                                && ! ask " >>> Overwrite $target_file?"; then
+        do_copy=false
+    fi
+
+    if $do_copy; then
+        print "Copying $file ..."
+		rsync $TEMP_DIR/$file $target_file -c
+    else
+        print "Skipping $file"
+    fi
+done
+
+print ""
+print "Updating directories to: $HOME ..."
+print ""
+
+for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
+do
+    do_copy=true
+    target_dir=$HOME/$dir
+    is_dir_different=$(rsync $TEMP_DIR/$dir $HOME -ncr --out-format %i)
+
+    if [[ $is_dir_different ]] && [[ $is_dir_different == *"."* ]] \
+        && ! ask " >>> Directory mismatch: $target_dir/. Update anyway?"; then
+        do_copy=false
+    fi
+
+    if $do_copy; then
+        print "Updating $dir/ ..."
+		rsync $TEMP_DIR/$dir $HOME -cr
+    else
+        print "Skipping $dir/"
+    fi
+done
+
+# Cleanup
+print ""
+print "Removed temporary directory"
+rm -rf $TEMP_DIR
+
+print ""
+print "Finished!"

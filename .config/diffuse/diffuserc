@@ -1,0 +1,13 @@
+# /etc/diffuserc: System-wide initialisation file for Diffuse
+#
+# Copyright (C) 2006-2009 Derrick Moser <derrick_moser@yahoo.com>
+
+#import ~/.config/diffuse/syntax/*.syntax
+color hatch 1 1 1
+float character_difference_opacity 0.9
+float line_difference_alpha .5
+float alignment_opacity 0
+
+color difference_1 0.85 0.775 0.625
+color difference_2 0.85 0.625 0.775
+color difference_3 1.00 0.625 0.625
