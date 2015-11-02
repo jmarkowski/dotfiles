@@ -15,12 +15,7 @@ shopt -s checkwinsize
 # Correct minor spelling mistakes in cd command
 shopt -s cdspell
 
-# Safeguarding aliases to confirm file changes
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
-# Load machine specific local aliases
+# Load aliases
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 # Enable programmable completion features (you don't need to enable
