@@ -62,8 +62,7 @@ fi
 
 print "Fetching submodules ..."
 
-git submodule init
-git submodule update
+git submodule init && git submodule update > /dev/null
 
 TEMP_DIR=`mktemp -d`
 
