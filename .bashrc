@@ -139,7 +139,7 @@ vnc () {
         *)          echo "usage: vnc <host> (phys | virt)"; return ;;
     esac
 
-    vncviewer -via $host -passwd ~/.vnc/$host localhost:$disp
+    vncviewer -via $host -passwd ~/.vnc/passwd.$host localhost:$disp
 }
 
 vnc_start () {
