@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export PATH=$HOME/bin:$PATH:/usr/local/MATLAB/R2014a/bin
+export PATH=$HOME/bin:$PATH
 #export CDPATH=":$HOME" # include $HOME in cd-able path
 #export VIMRUNTIME=$HOME/.vim
 
