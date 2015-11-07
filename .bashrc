@@ -121,7 +121,8 @@ extract () {
             *.zip)      unzip      $1 ;;
             *.ZIP)      unzip      $1 ;;
             *.Z)        uncompress $1 ;;
-            *)          echo "'$1' unknown format. Unable to extract." ;;
+            '')         echo "usage: extract <file>" ;;
+            *)          echo "Unable to extract: unknown format" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -135,7 +136,7 @@ vnc () {
     case $2 in
         phys)       disp=0  ;;
         virt)       disp=1  ;;
-        *)          echo "Select 'phys' or 'virt'"; return ;;
+        *)          echo "usage: vnc <host> (phys | virt)"; return ;;
     esac
 
     vncviewer -via $host -passwd ~/.vnc/$host localhost:$disp
@@ -151,7 +152,7 @@ vnc_start () {
         # -localhost: only allow connections from same machine
         virt) dbus-launch vncserver -geometry 1920x1200 \
                                                    -nevershared -localhost :1 ;;
-        *) echo "Select 'phys' or 'virt'" ;;
+        *) echo "usage: vnc_start (phys | virt)" ;;
     esac
 }
 
@@ -160,7 +161,7 @@ vnc_stop () {
         phys) vncserver -kill :0  ;;
         virt) vncserver -kill :1  ;;
         list) vncserver -list ;;
-        *) echo "Select 'phys', 'virt', or 'list'" ;;
+        *) echo "usage: vnc_stop (phys | virt | list)" ;;
     esac
 }
 
