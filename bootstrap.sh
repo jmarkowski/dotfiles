@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+TARGET_DIR=$HOME
+
 error () {
     echo "ERROR: $*"
 }
@@ -48,7 +50,7 @@ ask() {
     done
 }
 
-DOTFILES_DIR=$HOME/.dotfiles
+DOTFILES_DIR=$TARGET_DIR/.dotfiles
 
 check_command rsync
 check_command git
@@ -75,14 +77,14 @@ rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
                                  -ah
 
 print ""
-print "Copying dotfiles to: $HOME/"
+print "Copying dotfiles to: $TARGET_DIR/"
 print ""
 
 for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
 do
     do_copy=true
-    target_file=$HOME/$file
-    is_file_different=$(rsync $TEMP_DIR/$file $HOME/ -nc --out-format %i)
+    target_file=$TARGET_DIR/$file
+    is_file_different=$(rsync $TEMP_DIR/$file $TARGET_DIR/ -nc --out-format %i)
 
     if [[ $is_file_different ]] && [[ $is_file_different != *"+" ]] \
                                 && ! ask " >>> Overwrite $target_file?"; then
@@ -98,14 +100,14 @@ do
 done
 
 print ""
-print "Updating directories to: $HOME ..."
+print "Updating directories to: $TARGET_DIR ..."
 print ""
 
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
 do
     do_copy=true
-    target_dir=$HOME/$dir
-    is_dir_different=$(rsync $TEMP_DIR/$dir $HOME -ncr --out-format %i)
+    target_dir=$TARGET_DIR/$dir
+    is_dir_different=$(rsync $TEMP_DIR/$dir $TARGET_DIR -ncr --out-format %i)
 
     if [[ $is_dir_different ]] && [[ $is_dir_different == *"."* ]] \
         && ! ask " >>> Directory mismatch: $target_dir/. Update anyway?"; then
@@ -114,7 +116,7 @@ do
 
     if $do_copy; then
         print "Updating $dir/ ..."
-		rsync $TEMP_DIR/$dir $HOME -cr
+		rsync $TEMP_DIR/$dir $TARGET_DIR -cr
     else
         print "Skipping $dir/"
     fi
