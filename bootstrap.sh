@@ -2,8 +2,12 @@
 
 TARGET_DIR=$HOME
 
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+NONE='\033[0m'
+
 error () {
-    echo "ERROR: $*"
+    echo -e "$RED""ERROR: $*""$NONE"
 }
 
 bail () {
@@ -145,4 +149,4 @@ if [[ $email ]]; then
 fi
 
 print ""
-print "Finished!"
+print "$GREEN""Finished!""$NONE"
