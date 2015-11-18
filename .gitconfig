@@ -1,10 +1,10 @@
 [diff]
-    tool = diffuse
+	tool = diffuse
 [difftool]
 	prompt = no
-    cmd = diffuse $LOCAL $REMOTE
+	cmd = diffuse $LOCAL $REMOTE
 [merge]
-    tool = diffuse
+	tool = diffuse
 [mergetool]
 	prompt = no
 	cmd = diffuse $LOCAL $REMOTE

@@ -93,14 +93,14 @@ do
 
     if $do_copy; then
         print "Copying $file ..."
-		rsync $TEMP_DIR/$file $target_file -c
+        rsync $TEMP_DIR/$file $target_file -c
     else
         print "Skipping $file"
     fi
 done
 
 print ""
-print "Updating directories to: $TARGET_DIR ..."
+print "Updating directories to: $TARGET_DIR/ ..."
 print ""
 
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
@@ -116,7 +116,7 @@ do
 
     if $do_copy; then
         print "Updating $dir/ ..."
-		rsync $TEMP_DIR/$dir $TARGET_DIR -cr
+        rsync $TEMP_DIR/$dir $TARGET_DIR -cr
     else
         print "Skipping $dir/"
     fi
