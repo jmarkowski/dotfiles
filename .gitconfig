@@ -1,3 +1,6 @@
+[user]
+	name = <unknown>
+	email = <unknown>
 [diff]
 	tool = diffuse
 [difftool]

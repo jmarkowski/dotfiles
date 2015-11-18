@@ -19,6 +19,10 @@ print () {
     echo -e "    $*"
 }
 
+input () {
+    echo -n "    $*"
+}
+
 ask() {
     while true; do
 
@@ -126,6 +130,19 @@ done
 print ""
 print "Removed temporary directory"
 rm -rf $TEMP_DIR
+
+print "Set gitconfig (enter blank to ignore):"
+input "> Name : "
+read name
+input "> Email: "
+read email
+
+if [[ $name ]]; then
+    git config --file $TARGET_DIR/.gitconfig user.name $name
+fi
+if [[ $email ]]; then
+    git config --file $TARGET_DIR/.gitconfig user.email $email
+fi
 
 print ""
 print "Finished!"
