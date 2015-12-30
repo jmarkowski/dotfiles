@@ -129,14 +129,14 @@ extract () {
     fi
 }
 
-vnc () {
+vnc_connect () {
     local disp=-1
     local host=$1
 
     case $2 in
         phys)       disp=0  ;;
         virt)       disp=1  ;;
-        *)          echo "usage: vnc <host> (phys | virt)"; return ;;
+        *)          echo "usage: vnc_connect <host> (phys | virt)"; return ;;
     esac
 
     vncviewer -via $host -passwd ~/.vnc/passwd.$host localhost:$disp
