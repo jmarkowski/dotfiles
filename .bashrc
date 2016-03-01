@@ -116,6 +116,7 @@ extract () {
             *.tar.gz)   tar -zxvf  $1 ;;
             *.tgz)      tar -zxvf  $1 ;;
             *.tar)      tar -xvf   $1 ;;
+            *.tar.xz)   tar -xf    $1 ;;
             *.bz2)      bunzip2    $1 ;;
             *.gz)       gunzip     $1 ;;
             *.zip)      unzip      $1 ;;
