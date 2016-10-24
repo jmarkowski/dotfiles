@@ -75,7 +75,7 @@ backup_home_external() {
         test) dryrun='-n' ;;
         *) echo "Select 'go' (do backup) or 'test' to do dry run"; return; ;;
     esac
-    rsync -av --update --modify-window=10 \
+    echo rsync -av --update --modify-window=10 \
         --exclude '*.iso' \
         --exclude '.cache' \
         --exclude '.thumbnails' \
@@ -85,16 +85,16 @@ backup_home_external() {
         $dryrun $HOME $2
 }
 
-backup () {
+backup_remote () {
     local host=$1
     local dir=$2
-    rsync ~/$dir/ $host:~/$dir/ -avzuP $3 $4
+    echo rsync ~/$dir/ $host:~/$dir/ -avzuP $3 $4
 }
 
-restore () {
+restore_remote () {
     local host=$1
     local dir=$2
-    rsync $host:~/$dir/ ~/$dir/ -avzuP $3 $4
+    echo rsync $host:~/$dir/ ~/$dir/ -avzuP $3 $4
 }
 
 # Display duplicate files in the current directory
@@ -122,8 +122,9 @@ extract () {
             *.zip)      unzip      $1 ;;
             *.ZIP)      unzip      $1 ;;
             *.Z)        uncompress $1 ;;
+            *.rar)      unrar x    $1 ;;
             '')         echo "usage: extract <file>" ;;
-            *)          echo "Unable to extract: unknown format" ;;
+            *)          echo "'$1' unknown format. Unable to extract." ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -146,7 +147,7 @@ vnc_connect () {
 vnc_start () {
     case $1 in
         # Access via port 5900
-        phys)  x11vnc -display :0 -rfbauth ~/.x11vnc/passwd    ;;
+        phys)  x11vnc -display :0 -rfbauth ~/.vnc/x11passwd    ;;
         # Access via port 5901
         # (The 'dbus-launch vncserver ...' starts KDE in the vnc window.)
         # -alwaysshared: always treat incoming connections as shared

@@ -43,3 +43,5 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias grep='grep -n -B 4 -A 4 --colour --exclude tags'
+
+# Custom, machine-specific aliases:
