@@ -1,16 +1,21 @@
 [user]
 	name = <unknown>
 	email = <unknown>
+
 [diff]
 	tool = diffuse
 [difftool]
 	prompt = no
+[difftool "diffuse"]
 	cmd = diffuse $LOCAL $REMOTE
+
 [merge]
 	tool = diffuse
 [mergetool]
 	prompt = no
-	cmd = diffuse $LOCAL $REMOTE
+[mergetool "diffuse"]
+	cmd = diffuse $LOCAL $MERGED $REMOTE
+
 [core]
 	excludesfile = $HOME/.gitignore
 	editor = vi
