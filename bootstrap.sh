@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
+################################################################################
+# GLOBALS
+################################################################################
 TARGET_DIR=$HOME
+DOTFILES_DIR=$TARGET_DIR/.dotfiles
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 NONE='\033[0m'
 
+################################################################################
+# FUNCTIONS
+################################################################################
 error () {
     echo -e "$RED""ERROR: $*""$NONE"
 }
@@ -58,7 +65,10 @@ ask() {
     done
 }
 
-DOTFILES_DIR=$TARGET_DIR/.dotfiles
+################################################################################
+# MAIN
+################################################################################
+# PRELIMINARY CONDITIONS #######################################################
 
 check_command rsync
 check_command git
@@ -70,12 +80,18 @@ if [ $PWD != $DOTFILES_DIR ]; then
     bail "Script must be run within $DOTFILES_DIR";
 fi
 
+# If the $TMPDIR variable is set, then abort because... problems.
+if ! [ -z ${TMPDIR+x} ]; then
+    bail "TMPDIR is defined as $TMPDIR and boostrapping won't work"
+fi
+
 print "Fetching submodules ..."
 
 git submodule init && git submodule update > /dev/null
 
 TEMP_DIR=`mktemp -d`
 
+# COPY TO TEMPORARY LOCATION ###################################################
 print "Copied dotfiles into temporary directory: $TEMP_DIR"
 rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
                                 --exclude=.gitmodules \
@@ -88,6 +104,7 @@ print ""
 print "Copying dotfiles to: $TARGET_DIR/"
 print ""
 
+# COPY ALL FILES TO TARGET DIRECTORY ###########################################
 for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
 do
     do_copy=true
@@ -111,6 +128,7 @@ print ""
 print "Updating directories to: $TARGET_DIR/ ..."
 print ""
 
+# COPY ALL DIRECTORIES TO TARGET DIRECTORY #####################################
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
 do
     do_copy=true
@@ -130,11 +148,12 @@ do
     fi
 done
 
-# Cleanup
+# CLEANUP ######################################################################
 print ""
 print "Removed temporary directory"
 rm -rf $TEMP_DIR
 
+# CONFIGURATION ################################################################
 print "Set gitconfig (enter blank to ignore):"
 input "> Name : "
 read name
@@ -148,5 +167,8 @@ if [[ $email ]]; then
     git config --file $TARGET_DIR/.gitconfig user.email $email
 fi
 
+# DONE #########################################################################
 print ""
 print "$GREEN""Finished!""$NONE"
+
+exit 0;
