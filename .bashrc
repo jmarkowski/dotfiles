@@ -40,7 +40,8 @@ shopt -s histappend     # Append to the history file, don't overwrite it
 ###############################################################################
 # GIT
 ###############################################################################
-source ~/bin/git-completion.sh
+source ~/bin/git-completion.bash
+source ~/bin/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
@@ -49,8 +50,8 @@ GIT_PS1_SHOWUPSTREAM="auto"
 # PROMPT STRINGS
 ###############################################################################
 PS1='[\u@\h \W]\$ '
-PS1='\n\[\e[1;32m\]\u@\h \[\e[1;0m\]\w\[\e[0m\]\[\e[1;30m\]'`
-   `'$(__git_ps1 "[%s]")\[\e[1;0m\]\n$ '
+PS1='\n\[\e[1;32m\]\u@\h \[\e[1;0m\]\w\[\e[0m\]\[\e[1;30m\] '`
+   `'$(__git_ps1 "(%s)")\[\e[1;0m\]\n$ '
 
 ###############################################################################
 # FUNCTIONS
