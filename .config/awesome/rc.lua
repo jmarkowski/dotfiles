@@ -335,7 +335,9 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+    -- Screenshot
+     awful.key({ }, "Print", function () awful.util.spawn("xfce4-screenshooter", false) end)
 )
 
 clientkeys = gears.table.join(
