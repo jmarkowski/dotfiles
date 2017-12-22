@@ -46,7 +46,7 @@ beautiful.init(gears.filesystem.get_dir("config") .. "themes/arch/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
-browser = "chromium"
+browser = "firefox"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
