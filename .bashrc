@@ -5,10 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export PATH=$HOME/bin:$PATH
-#export CDPATH=":$HOME" # include $HOME in cd-able path
-#export VIMRUNTIME=$HOME/.vim
-
 # Check the window size and update LINES and COLUMNS after each command
 shopt -s checkwinsize
 

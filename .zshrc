@@ -13,8 +13,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export PATH=$HOME/bin:$PATH:/usr/local/MATLAB/R2014a/bin
-
 # Load aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 
