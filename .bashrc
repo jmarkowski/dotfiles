@@ -176,3 +176,10 @@ compare_dirs () {
     find $2 -type f -print0 | sort | xargs -0 sha1sum > ~/dir2
     diffuse ~/dir1 ~/dir2
 }
+
+bt () {
+    case $1 in
+        start) echo -e 'power on\nconnect 00:02:5B:00:FF:04\nquit' | bluetoothctl ;;
+        stop) echo -e 'disconnect 00:02:5B:00:FF:04\npower off\nquit' | bluetoothctl ;;
+    esac
+}

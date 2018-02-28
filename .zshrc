@@ -74,3 +74,11 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Connect to the bluetooth adapter
+bt () {
+    case $1 in
+        start) echo -e 'power on\nconnect 00:02:5B:00:FF:04\nquit' | bluetoothctl ;;
+        stop) echo -e 'disconnect 00:02:5B:00:FF:04\npower off\nquit' | bluetoothctl ;;
+    esac
+}
