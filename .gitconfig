@@ -19,6 +19,7 @@
 [core]
 	excludesfile = $HOME/.gitignore
 	editor = vi
+	abbrev = 10
 [format]
 	pretty = format:%h %an %ar:%x09%s
 [color]
