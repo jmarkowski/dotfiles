@@ -4,15 +4,19 @@
 
 [diff]
 	tool = diffuse
+
 [difftool]
 	prompt = no
+
 [difftool "diffuse"]
 	cmd = diffuse $LOCAL $REMOTE
 
 [merge]
 	tool = diffuse
+
 [mergetool]
 	prompt = no
+
 [mergetool "diffuse"]
 	cmd = diffuse $LOCAL $MERGED $REMOTE
 
@@ -20,16 +24,25 @@
 	excludesfile = $HOME/.gitignore
 	editor = vi
 	abbrev = 10
+	pager = less
+	whitespace = trailing-space
+	ignorecase = no
+
 [format]
 	pretty = format:%h %an %ar:%x09%s
+
 [color]
 	ui = auto
+
 [color "branch"]
 	current = reverse
+
 [alias]
 	lg  = log --graph --pretty=format:'%C(yellow bold)%h%Creset (%ad) %C(bold)%an:%Creset %s %Cgreen%d%Creset' --date=relative
 	bit = log --graph --pretty=format:'%C(yellow bold)%h%Creset (%ad) %C(bold)%an:%Creset %s %Cgreen%d%Creset' --date=relative -15
+
 [push]
 	default = upstream
+
 [rebase]
 	autosquash = true
