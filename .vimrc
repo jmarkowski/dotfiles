@@ -3,43 +3,34 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
-"Convert tabs to spaces
-set expandtab
+set expandtab           " Convert tabs to spaces
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-" Search details
-set incsearch
+set incsearch           " Search details
 set hlsearch
-" Do no wrap searching
-set nowrapscan
-" To aid the colorscheme...
-set t_Co=256
-" Create line numbers on the left side of vi, 6 digits worth
-set number
+set nowrapscan          " Do not wrap searching
+set t_Co=256            " To aid the color scheme...
+set number              " Show line numbers
 set numberwidth=6
-" Set text wrapping at 80 columns
-set tw=80
-" Indent to the tab positiion when  you cross over the 80 line limit.
+set tw=80               " Text wrapping at 80 columns
 set smartindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable folding
-set foldenable
-" Show fold columns
-set foldcolumn=1
-" Set the fold syntax according to braces
-set foldmethod=syntax
-" Prevent folding of C comment blocks
-let c_no_comment_fold=1
-" Open a file with all folds open
-set foldlevelstart=8
-" set J,K for navigating between fold positions
+
+set foldenable          " Enable folding
+set foldcolumn=1        " Show fold columns
+set foldmethod=syntax   " Set the fold syntax according to braces
+let c_no_comment_fold=1 " Prevent folding of C comment blocks
+set foldlevelstart=8    " Open a file with all folds open
+
+" Set J,K for navigating between fold positions
 map J zj
 map K zk
-"set O,C for opening/closing folds.
+
+" Set O,C for opening/closing folds.
 "map O zO
 "map C zC
 
@@ -58,25 +49,22 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Window splitting (vertical and horizontal)
+" Window splitting
 nnoremap <C-v> :vsp<CR>
 nnoremap <C-h> :sp<CR>
-" Enter, scroll to place cursor at top
+
+" <enter> scrolls to place cursor at top
 nnoremap <CR> jz<CR>2<C-y>
 
 " Get ctags for all dependent directories
 nmap tt :!ctags
-
-" Fix else-statements
-nmap squish :%s/}[\n\r]\s*else /} else /g<CR><C-o>
-nmap stretch :%s/\(\s*\)} else /\1}\r\1else /g<CR><C-o>
 
 " Auto completion
 "imap <tab> <C-p>
 
 " Align text centered
 map mid :center 80<CR>
-" Insert comment lines and right justify text
+"Insert comment lines and right justify text
 map com I/* <ESC>A */<ESC>:ri<CR>
 
 " Insert note and center justify text
