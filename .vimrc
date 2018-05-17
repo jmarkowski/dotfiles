@@ -3,10 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
-set expandtab           " Convert tabs to spaces
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
 set incsearch           " Search details
 set hlsearch
 set nowrapscan          " Do not wrap searching
@@ -15,6 +11,17 @@ set number              " Show line numbers
 set numberwidth=6
 set tw=80               " Text wrapping at 80 columns
 set smartindent
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FILE DEPENDENT INDENTATION
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Convert tabs to spaces
+set expandtab
+set tabstop=4                                        "Number of spaces in a tab.
+set shiftwidth=4                    "Number of spaces in manual indent (>>, <<).
+
+autocmd Filetype html setlocal ts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sw=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
