@@ -20,7 +20,7 @@ set expandtab
 set tabstop=4                                        "Number of spaces in a tab.
 set shiftwidth=4                    "Number of spaces in manual indent (>>, <<).
 
-autocmd Filetype html setlocal ts=2 sw=2
+autocmd Filetype htmldjango setlocal ts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sw=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
