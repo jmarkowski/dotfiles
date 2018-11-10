@@ -10,15 +10,15 @@ set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
 set numberwidth=6
 set tw=80               " Text wrapping at 80 columns
-set smartindent
+set smartindent         " Indent to the tab position when you cross the 80 line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE DEPENDENT INDENTATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Convert tabs to spaces
-set expandtab
-set tabstop=4                                        "Number of spaces in a tab.
-set shiftwidth=4                    "Number of spaces in manual indent (>>, <<).
+"set softtabstop=4
+set expandtab           " Convert tabs to spaces
+set tabstop=4           " Number of spaces in a tab.
+set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
 
 autocmd Filetype htmldjango setlocal ts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sw=2
