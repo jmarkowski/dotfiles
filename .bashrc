@@ -108,7 +108,7 @@ find_duplicates () {
     uniq -w32 --all-repeated=separate
 }
 
-extract () {
+ex () {
     if [ -f $1 ]; then
         case $1 in
             *.tar.bz2)  tar -jxvf  "$1" ;;
