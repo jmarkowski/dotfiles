@@ -1,4 +1,6 @@
-# /etc/profile
+#
+# ~/.profile
+#
 
 #Set our umask
 umask 022
