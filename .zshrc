@@ -1,3 +1,7 @@
+#
+# ~/.zshrc
+#
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=5000
@@ -5,9 +9,10 @@ SAVEHIST=5000
 setopt appendhistory extendedglob nomatch notify
 unsetopt beep
 bindkey -e
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/markowski/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -60,11 +65,12 @@ ex () {
             *.tar.gz)   tar -zxvf  "$1" ;;
             *.tgz)      tar -zxvf  "$1" ;;
             *.tar)      tar -xvf   "$1" ;;
-            *.tar.xz)   tar -xf    "$1" ;;
+            *.tar.xz)   tar -xvf   "$1" ;;
             *.bz2)      bunzip2    "$1" ;;
             *.gz)       gunzip     "$1" ;;
             *.zip)      unzip      "$1" ;;
             *.ZIP)      unzip      "$1" ;;
+            *.7z)       7z x       "$1" ;;
             *.Z)        uncompress "$1" ;;
             *.rar)      unrar x    "$1" ;;
             '')         echo "usage: extract <file>" ;;

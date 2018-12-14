@@ -111,19 +111,19 @@ find_duplicates () {
 ex () {
     if [ -f $1 ]; then
         case $1 in
-            *.tar.bz2)  tar -jxvf  $1 ;;
-            *.tbz2)     tar -jxvf  $1 ;;
-            *.tar.gz)   tar -zxvf  $1 ;;
-            *.tgz)      tar -zxvf  $1 ;;
-            *.tar)      tar  -xvf  $1 ;;
-            *.tar.xz)   tar  -xvf  $1 ;;
-            *.bz2)      bunzip2    $1 ;;
-            *.gz)       gunzip     $1 ;;
-            *.zip)      unzip      $1 ;;
-            *.ZIP)      unzip      $1 ;;
-            *.7z)       7z x       $1 ;;
-            *.Z)        uncompress $1 ;;
-            *.rar)      unrar x    $1 ;;
+            *.tar.bz2)  tar -jxvf  "$1" ;;
+            *.tbz2)     tar -jxvf  "$1" ;;
+            *.tar.gz)   tar -zxvf  "$1" ;;
+            *.tgz)      tar -zxvf  "$1" ;;
+            *.tar)      tar -xvf   "$1" ;;
+            *.tar.xz)   tar -xvf   "$1" ;;
+            *.bz2)      bunzip2    "$1" ;;
+            *.gz)       gunzip     "$1" ;;
+            *.zip)      unzip      "$1" ;;
+            *.ZIP)      unzip      "$1" ;;
+            *.7z)       7z x       "$1" ;;
+            *.Z)        uncompress "$1" ;;
+            *.rar)      unrar x    "$1" ;;
             '')         echo "usage: extract <file>" ;;
             *)          echo "'$1' unknown format. Unable to extract." ;;
         esac
@@ -178,6 +178,7 @@ compare_dirs () {
     diffuse ~/dir1 ~/dir2
 }
 
+# Connect to the bluetooth adapter
 bt () {
     case $1 in
         start) echo -e 'power on\nconnect 00:02:5B:00:FF:04\nquit' | bluetoothctl ;;
