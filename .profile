@@ -2,7 +2,7 @@
 # ~/.profile
 #
 
-#Set our umask
+# Set our umask
 umask 022
 
 # Set our default path
@@ -28,7 +28,8 @@ unset TERMCAP
 # Man is much better than us at figuring this out
 unset MANPATH
 
-###################################
-# Custom autostart configurations #
-###################################
-xrandr --output DVI-I-2 --output DVI-I-3 --primary --left-of DVI-I-2
+#
+# Custom autostart configurations
+#
+xrandr --output DP1 --primary --rotate normal --right-of DP2 --panning 1920x1080+1080+540
+xrandr --output DP2 --rotate right --panning 1080x1920+0+0
