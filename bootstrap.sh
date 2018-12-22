@@ -154,7 +154,7 @@ print "Removed temporary directory"
 rm -rf $TEMP_DIR
 
 # CONFIGURATION ################################################################
-print "Set gitconfig (enter blank to ignore):"
+print "Update git configuration file (enter blank to ignore):"
 input "> Name : "
 read name
 input "> Email: "
