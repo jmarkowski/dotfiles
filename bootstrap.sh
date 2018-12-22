@@ -34,37 +34,6 @@ input () {
     echo -n "    $*"
 }
 
-ask() {
-    while true; do
-
-        if [ "${2:-}" = "Y" ]; then
-            prompt="Y/n"
-            default=Y
-        elif [ "${2:-}" = "N" ]; then
-            prompt="y/N"
-            default=N
-        else
-            prompt="y/n"
-            default=
-        fi
-
-        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
-        read -p "    $1 [$prompt] " REPLY </dev/tty
-
-        # Default?
-        if [ -z "$REPLY" ]; then
-            REPLY=$default
-        fi
-
-        # Check if the reply is valid
-        case "$REPLY" in
-            Y*|y*) return 0 ;;
-            N*|n*) return 1 ;;
-        esac
-
-    done
-}
-
 ################################################################################
 # MAIN
 ################################################################################
@@ -107,21 +76,16 @@ print ""
 # COPY ALL FILES TO TARGET DIRECTORY ###########################################
 for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
 do
-    do_copy=true
     target_file=$TARGET_DIR/$file
     is_file_different=$(rsync $TEMP_DIR/$file $TARGET_DIR/ -nc --out-format %i)
 
-    if [[ $is_file_different ]] && [[ $is_file_different != *"+" ]] \
-                                && ! ask " >>> Overwrite $target_file?"; then
-        do_copy=false
+    if [[ $is_file_different ]] && [[ $is_file_different != *"+" ]]; then
+        mv $target_file ${target_file}.old
+        print "Moved already existing $target_file to ${target_file}.old"
     fi
 
-    if $do_copy; then
-        print "Copying $file ..."
-        rsync $TEMP_DIR/$file $target_file -c
-    else
-        print "Skipping $file"
-    fi
+    print "Copying $file ..."
+    rsync $TEMP_DIR/$file $target_file -c
 done
 
 print ""
@@ -131,21 +95,16 @@ print ""
 # COPY ALL DIRECTORIES TO TARGET DIRECTORY #####################################
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
 do
-    do_copy=true
     target_dir=$TARGET_DIR/$dir
     is_dir_different=$(rsync $TEMP_DIR/$dir $TARGET_DIR -ncr --out-format %i)
 
-    if [[ $is_dir_different ]] && [[ $is_dir_different == *"."* ]] \
-        && ! ask " >>> Directory mismatch: $target_dir/. Update anyway?"; then
-        do_copy=false
+    if [[ $is_dir_different ]] && [[ $is_dir_different == *"."* ]]; then
+        mv $target_dir ${target_dir}.old
+        print "Moved already existing $target_dir to ${target_dir}.old"
     fi
 
-    if $do_copy; then
-        print "Updating $dir/ ..."
-        rsync $TEMP_DIR/$dir $TARGET_DIR -cr
-    else
-        print "Skipping $dir/"
-    fi
+    print "Updating $dir/ ..."
+    rsync $TEMP_DIR/$dir $TARGET_DIR -cr
 done
 
 # CLEANUP ######################################################################
