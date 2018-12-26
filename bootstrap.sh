@@ -13,21 +13,25 @@ NONE='\033[0m'
 ################################################################################
 # FUNCTIONS
 ################################################################################
-error () {
-    echo -e "$RED""ERROR: $*""$NONE"
-}
-
-bail () {
-    error $*
-    exit 99
-}
-
 check_command () {
     command -v $1 >/dev/null 2>&1 || bail "Command '$1' not found."
 }
 
 print () {
     echo -e "    $*"
+}
+
+print_ok () {
+    echo -e "$GREEN""$*""$NONE"
+}
+
+print_err () {
+    echo -e "$RED""ERROR: $*""$NONE"
+}
+
+bail () {
+    error $*
+    exit 99
 }
 
 input () {
@@ -54,20 +58,21 @@ if ! [ -z ${TMPDIR+x} ]; then
     bail "TMPDIR is defined as $TMPDIR and boostrapping won't work"
 fi
 
-print "Fetching submodules ..."
-
+print "Fetching submodules ... \c"
 git submodule init && git submodule update > /dev/null
+print_ok "OK"
 
 TEMP_DIR=`mktemp -d`
 
 # COPY TO TEMPORARY LOCATION ###################################################
-print "Copied dotfiles into temporary directory: $TEMP_DIR"
+print "Copying dotfiles into temporary directory: $TEMP_DIR ... \c"
 rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
                                 --exclude=.gitmodules \
                                 --exclude=bootstrap.sh \
                                 --exclude=LICENSE \
                                 --exclude=README.md \
                                  -ah
+print_ok "OK"
 
 print ""
 print "Copying dotfiles to: $TARGET_DIR/"
@@ -84,8 +89,9 @@ do
         print "Moved already existing $target_file to ${target_file}.old"
     fi
 
-    print "Copying $file ..."
+    print "Copying $file ... \c"
     rsync $TEMP_DIR/$file $target_file -c
+    print_ok "OK"
 done
 
 print ""
@@ -103,14 +109,16 @@ do
         print "Moved already existing $target_dir to ${target_dir}.old"
     fi
 
-    print "Updating $dir/ ..."
+    print "Copying $dir/ ... \c"
     rsync $TEMP_DIR/$dir $TARGET_DIR -cr
+    print_ok "OK"
 done
 
 # CLEANUP ######################################################################
 print ""
-print "Removed temporary directory"
+print "Cleaning up ... \c"
 rm -rf $TEMP_DIR
+print_ok "OK"
 
 # CONFIGURATION ################################################################
 print "Update git configuration file (enter blank to ignore):"
@@ -128,6 +136,6 @@ fi
 
 # DONE #########################################################################
 print ""
-print "$GREEN""Finished!""$NONE"
+print_ok "Finished!"
 
 exit 0;
