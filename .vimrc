@@ -12,6 +12,10 @@ set numberwidth=6
 set tw=80               " Text wrapping at 80 columns
 set smartindent         " Indent to the tab position when you cross the 80 line
 
+" Look for tags in the directory of the current file, in the current directory
+" and up until $HOME, stopping at the first hit of the tags file.
+set tags=./tags,tags;$HOME
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE DEPENDENT INDENTATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
