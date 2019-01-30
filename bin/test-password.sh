@@ -7,18 +7,19 @@ sha1=${sha1:0:40}
 
 sha1sub=${sha1:0:5}
 sha1upper=${sha1^^}
+tmpfile=password-check.txt
 
 # Use the k-Anonymity API to find out if a password is safe or not
-wget --show-progress https://api.pwnedpasswords.com/range/$sha1sub
+wget -q -O $tmpfile https://api.pwnedpasswords.com/range/$sha1sub
 
 echo PASSWORD: $pw
 echo SHA1    : $sha1
 
 echo "GREP results: "
-echo grep ${sha1upper:5:40} $sha1sub -n
-grep ${sha1upper:5:40} $sha1sub -n
+echo grep ${sha1upper:5:40} $tmpfile -n
+grep ${sha1upper:5:40} $tmpfile -n
 rc=$?
-rm -f $sha1sub
+rm -f $tmpfile
 
 printf "\n"
 if [ $rc -eq 0 ]; then
