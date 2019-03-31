@@ -9,7 +9,7 @@ set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
 set numberwidth=6
-set tw=80               " Text wrapping at 80 columns
+set textwidth=80        " Text wrapping at 80 columns
 set smartindent         " Indent to the tab position when you cross the 80 line
 
 " Look for tags in the directory of the current file, in the current directory
@@ -24,8 +24,8 @@ set expandtab           " Convert tabs to spaces
 set tabstop=4           " Number of spaces in a tab.
 set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
 
-autocmd Filetype html setlocal ts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sw=2
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
