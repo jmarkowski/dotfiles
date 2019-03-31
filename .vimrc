@@ -24,7 +24,7 @@ set expandtab           " Convert tabs to spaces
 set tabstop=4           " Number of spaces in a tab.
 set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
 
-autocmd Filetype htmldjango setlocal ts=2 sw=2
+autocmd Filetype html setlocal ts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sw=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
