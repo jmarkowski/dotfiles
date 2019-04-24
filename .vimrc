@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on
+syntax enable           " Enable syntax processing
 
 set incsearch           " Search details
 set hlsearch
@@ -19,13 +19,13 @@ set tags=./tags,tags;$HOME
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE DEPENDENT INDENTATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set softtabstop=4
-set expandtab           " Convert tabs to spaces
-set tabstop=4           " Number of spaces in a tab.
 set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
+set softtabstop=4       " Number of spaces in tab when editing
+set tabstop=4           " Number of visual spaces in a tab.
+set expandtab           " Convert tabs to spaces
 
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2
-autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2
+autocmd Filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
