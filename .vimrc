@@ -11,6 +11,9 @@ set number              " Show line numbers
 set numberwidth=6
 set textwidth=80        " Text wrapping at 80 columns
 set smartindent         " Indent to the tab position when you cross the 80 line
+set wildmenu            " Visual autocomplete for command menu
+set lazyredraw          " Redraw only when we need to
+set showmatch           " Highlight matching [{()}]
 
 " Look for tags in the directory of the current file, in the current directory
 " and up until $HOME, stopping at the first hit of the tags file.
