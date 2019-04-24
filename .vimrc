@@ -3,8 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable           " Enable syntax processing
 
-set incsearch           " Search details
-set hlsearch
 set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
@@ -18,6 +16,15 @@ set showmatch           " Highlight matching [{()}]
 " Look for tags in the directory of the current file, in the current directory
 " and up until $HOME, stopping at the first hit of the tags file.
 set tags=./tags,tags;$HOME
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCHING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","     " Map <leader> to ','
+" Turn off search highlight
+noremap <leader><space> :nohlsearch<CR>
+set incsearch           " Search details
+set hlsearch            " Highlight matches
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE DEPENDENT INDENTATION
