@@ -126,23 +126,28 @@ highlight LineNr       ctermfg=60
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SYNTAX HIGHLIGHTING
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile *.c syntax match pointer /\*[a-z,A-Z,0-9]*++/
-autocmd BufRead,BufNewFile *.c highlight pointer term = NONE ctermfg=Yellow
-autocmd BufRead,BufNewFile *.c syntax match annotate /\/\*\* [\:A-Za-z0-9 \n\r\*\\\/]* \*\*\//
-autocmd BufRead,BufNewFile *.c highlight annotate term=NONE ctermfg=8 ctermbg=2 cterm=bold
-autocmd BufRead,BufNewFile *.c highlight unimportant term=NONE ctermfg=15
-autocmd BufRead,BufNewFile *.c syntax match this /this/
-autocmd BufRead,BufNewFile *.c highlight this term=NONE ctermfg=3
-autocmd BufRead,BufNewFile *.c syntax match Identifier /\w\+_t\ze\W/
-autocmd BufRead,BufNewFile *.c,*.h syntax keyword cSpecial TRUE FALSE
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTO COMMANDS
+" AUTOGROUPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SYNTAX HIGHLIGHTING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup highlighting
+    " Clear autocmd's for the current highlighting group
+    autocmd!
+    autocmd BufRead,BufNewFile *.c syntax match pointer /\*[a-z,A-Z,0-9]*++/
+    autocmd BufRead,BufNewFile *.c highlight pointer term = NONE ctermfg=Yellow
+    autocmd BufRead,BufNewFile *.c syntax match annotate /\/\*\* [\:A-Za-z0-9 \n\r\*\\\/]* \*\*\//
+    autocmd BufRead,BufNewFile *.c highlight annotate term=NONE ctermfg=8 ctermbg=2 cterm=bold
+    autocmd BufRead,BufNewFile *.c highlight unimportant term=NONE ctermfg=15
+    autocmd BufRead,BufNewFile *.c syntax match this /this/
+    autocmd BufRead,BufNewFile *.c highlight this term=NONE ctermfg=3
+    autocmd BufRead,BufNewFile *.c syntax match Identifier /\w\+_t\ze\W/
+    autocmd BufRead,BufNewFile *.c,*.h syntax keyword cSpecial TRUE FALSE
+augroup END
+
 " autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
 " autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 " autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
@@ -157,28 +162,29 @@ if has("autocmd")
 "  autocmd BufEnter * match OverLength /\%81v.*/
 "augroup END
 
-if has("autocmd")
 " autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
 " autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 " autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
 " autocmd BufRead,BufNewFile *.[ch] endif
 " Remove trailing whitepsaces for each line on save.
-  autocmd BufWritePre * :%s/\s\+$//e
-endif
+autocmd BufWritePre * :%s/\s\+$//e
 
 augroup cprog
-  " Remove all cprog autocommands
-  au!
-
-  " For *.c and *.h files set formatting of comments and set C-indenting on.
-  " For other files switch it off.
-  " Don't change the order, it's important that the line with * comes first.
+    " Clear autocmd's fro the current cprog group
+    autocmd!
+    " For *.c and *.h files set formatting of comments and set C-indenting on.
+    " For other files switch it off.
+    " Don't change the order, it's important that the line with * comes first.
     autocmd BufRead,BufNewFile *       set formatoptions=tcql nocindent comments&
     autocmd BufRead,BufNewFile *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
     set cino=:0,(0,c1
-  augroup END
+augroup END
 
-  autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" END AUTOGROUPS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
 
 
