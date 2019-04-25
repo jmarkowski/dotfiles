@@ -196,5 +196,5 @@ endif
 
 " Mark.vim
 " Map these keys to search Marked items (from mark.vim plugin)
-map <C-j> \*
-map <C-k> \#
+map <C-j> ,*
+map <C-k> ,#
