@@ -1,4 +1,43 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle : Vim Plugin Manager
+"
+" git@github.com:VundleVim/Vundle.vim.git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible            " be iMproved, required
+filetype off                " required
+
+" Set the runtime path to include Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Initialize vundle and specify the path where Vundle should install plugins
+call vundle#begin('~/.vim/plugin')
+
+" Let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are various plugins. They must be included between
+" vundle#begin/end
+Plugin 'tpope/vim-fugitive'
+
+call vundle#end()           " required
+filetype plugin indent on   " required
+
+" Installation of Plugins:
+"   Launch `vim` and run `:PluginInstall`
+"   or from the CLI: `vim +PluginInstall +qall`
+"
+" Documentation:
+"   `:h vundle`
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN MAPPING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mark.vim
+" Map these keys to search Marked items (from mark.vim plugin)
+map <C-j> ,*
+map <C-k> ,#
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable           " Enable syntax processing
@@ -186,15 +225,3 @@ autocmd BufWritePre * :%s/\s\+$//e
 " END AUTOGROUPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN SPECIFIC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git Fugitive
-"set statusline=%{fugitive#statusline()}
-
-" Mark.vim
-" Map these keys to search Marked items (from mark.vim plugin)
-map <C-j> ,*
-map <C-k> ,#
