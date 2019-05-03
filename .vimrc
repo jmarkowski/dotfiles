@@ -31,6 +31,7 @@ filetype plugin indent on   " required
 " Documentation:
 "   `:h vundle`
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -39,16 +40,12 @@ filetype plugin indent on   " required
 map <C-j> ,*
 map <C-k> ,#
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GLOBAL CUSTOM CONFIGURATION
+" CUSTOM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","     " Map <leader> to ','
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SETS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable           " Enable syntax processing
-
 set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
@@ -63,29 +60,28 @@ set showmatch           " Highlight matching [{()}]
 " and up until $HOME, stopping at the first hit of the tags file.
 set tags=./tags,tags;$HOME
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SEARCHING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn off search highlight
+" Turn off search highlight by typing `, `
 noremap <leader><space> :nohlsearch<CR>
 set incsearch           " Search details
 set hlsearch            " Highlight matches
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FILE DEPENDENT INDENTATION
+" TABS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
 set softtabstop=4       " Number of spaces in tab when editing
 set tabstop=4           " Number of visual spaces in a tab.
 set expandtab           " Convert tabs to spaces
 
-autocmd Filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set foldenable          " Enable folding
 set foldcolumn=1        " Show fold columns
 set foldmethod=syntax   " Set the fold syntax according to braces
@@ -163,6 +159,7 @@ set undoreload=10000
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme jan
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -190,5 +187,8 @@ augroup cprog
     autocmd BufRead,BufNewFile *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
     set cino=:0,(0,c1
 augroup END
+
+autocmd Filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 endif
