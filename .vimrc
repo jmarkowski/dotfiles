@@ -173,7 +173,19 @@ if has("autocmd")
 " autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
 " autocmd BufRead,BufNewFile *.[ch] endif
 
-" Remove trailing whitepsaces for each line on save.
+" Remove trailing whitespaces when saving
+function! <SID>StripTrailingWhitespaces()
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
 " Highlight text that goes past the 80 line limit.
 "augroup vimrc_autocmds
 " autocmd BufReadPre * setlocal foldmethod=syntax
@@ -186,8 +198,6 @@ if has("autocmd")
 " autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 " autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
 " autocmd BufRead,BufNewFile *.[ch] endif
-" Remove trailing whitepsaces for each line on save.
-autocmd BufWritePre * :%s/\s\+$//e
 
 augroup cprog
     " Clear autocmd's fro the current cprog group
@@ -199,8 +209,6 @@ augroup cprog
     autocmd BufRead,BufNewFile *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
     set cino=:0,(0,c1
 augroup END
-
-autocmd BufWritePre * :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END AUTOGROUPS
