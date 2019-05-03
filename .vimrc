@@ -168,11 +168,6 @@ colorscheme jan
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
 
-" autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
-" autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
-" autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
-" autocmd BufRead,BufNewFile *.[ch] endif
-
 " Remove trailing whitespaces when saving
 function! <SID>StripTrailingWhitespaces()
     " save last search & cursor position
@@ -183,21 +178,7 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-" Highlight text that goes past the 80 line limit.
-"augroup vimrc_autocmds
-" autocmd BufReadPre * setlocal foldmethod=syntax
-" autocmd BufWinEnter * if &fdm == 'syntax' | setlocal foldmethod=manual | endif
-"  autocmd BufEnter * highlight OverLength ctermbg=12 guibg=#707070
-"  autocmd BufEnter * match OverLength /\%81v.*/
-"augroup END
-
-" autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
-" autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
-" autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
-" autocmd BufRead,BufNewFile *.[ch] endif
 
 augroup cprog
     " Clear autocmd's fro the current cprog group
@@ -210,7 +191,4 @@ augroup cprog
     set cino=:0,(0,c1
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" END AUTOGROUPS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
