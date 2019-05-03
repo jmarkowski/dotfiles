@@ -19,6 +19,8 @@ Plugin 'VundleVim/Vundle.vim'
 " vundle#begin/end
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'justinmk/vim-sneak'
+Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 
 call vundle#end()           " required
@@ -40,6 +42,8 @@ filetype plugin indent on   " required
 map <C-j> ,*
 map <C-k> ,#
 
+" See all buffers when there's only one tab open
+"let g:airline#extensions#tabline#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM CONFIGURATION
@@ -157,8 +161,13 @@ set undoreload=10000
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme jan
+" Options: soft, medium, hard
+let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_contrast_light='soft'
+colorscheme gruvbox
+set background=dark
 
+"colorscheme jan
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
