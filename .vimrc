@@ -201,5 +201,6 @@ augroup END
 
 autocmd Filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd Filetype yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 endif
