@@ -44,5 +44,8 @@ unset MANPATH
 #
 # Custom autostart configurations
 #
-xrandr --output DP1 --primary --rotate normal --right-of DP2 --panning 1920x1080+1080+540
-xrandr --output DP2 --rotate right --panning 1080x1920+0+0
+h=$(hostname)
+if [ "$h" == "lion" ]; then
+    xrandr --output DP1 --primary --rotate normal --right-of DP2 --panning 1920x1080+1080+540
+    xrandr --output DP2 --rotate right --panning 1080x1920+0+0
+fi
