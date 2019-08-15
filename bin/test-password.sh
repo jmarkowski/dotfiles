@@ -1,27 +1,23 @@
-#!/usr/bin/sh
+#!/bin/sh
 
-pw=$1
+# Store the first argument with a name
+password=$1
 
-sha1=$(echo -n "$1" | sha1sum)
-sha1=${sha1:0:40}
+# Store the 40 character SHA1 hash
+sha1=$(echo -n "$password" | sha1sum | cut -c 1-40)
 
-sha1sub=${sha1:0:5}
-sha1upper=${sha1^^}
-tmpfile=password-check.txt
+# Save the first 5 and last 35 SHA1 chunks in separate variables
+sha1_a=${sha1:0:5}
+sha1_b=${sha1:5:40}
 
-# Use the k-Anonymity API to find out if a password is safe or not
-wget -q -O $tmpfile https://api.pwnedpasswords.com/range/$sha1sub
+# Use the k-Anonymity API to fetch a collection of pwned passwords that share
+# the same 5 characters of the SHA1
+sha1list=$(wget -q -O - https://api.pwnedpasswords.com/range/$sha1_a)
 
-echo PASSWORD: $pw
-echo SHA1    : $sha1
-
-echo "GREP results: "
-echo grep ${sha1upper:5:40} $tmpfile -n
-grep ${sha1upper:5:40} $tmpfile -n
+# Does our password's last 35 character SHA1 chunk match any in the list?
+echo $sha1list | grep --ignore-case --quiet $sha1_b
 rc=$?
-rm -f $tmpfile
 
-printf "\n"
 if [ $rc -eq 0 ]; then
     echo '*****************************'
     echo "* The password is NOT safe! *"
