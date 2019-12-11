@@ -24,7 +24,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 
 call vundle#end()           " required
-filetype plugin indent on   " required
+filetype plugin indent on   " required (file type detection)
 
 " Installation of Plugins:
 "   Launch `vim` and run `:PluginInstall`
@@ -82,6 +82,11 @@ set softtabstop=4       " Number of spaces in tab when editing
 set tabstop=4           " Number of visual spaces in a tab.
 set expandtab           " Convert tabs to spaces
 
+if has("autocmd")
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDING
@@ -198,9 +203,5 @@ augroup cprog
     autocmd BufRead,BufNewFile *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
     set cino=:0,(0,c1
 augroup END
-
-autocmd Filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd Filetype yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 endif
