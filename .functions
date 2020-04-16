@@ -1,0 +1,65 @@
+# Set man page colors to make man pages more readable.
+man () {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
+
+# Display duplicate files in the current directory
+find_duplicates () {
+    find -not -empty -type f -printf "%s\n" | \
+    sort -rn | \
+    uniq -d | \
+    xargs -I{} -n1 find -type f -size {}c -print0 | \
+    xargs -0 md5sum | \
+    sort | \
+    uniq -w32 --all-repeated=separate
+}
+
+ex () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)  tar -jxvf  "$1" ;;
+            *.tbz2)     tar -jxvf  "$1" ;;
+            *.tar.gz)   tar -zxvf  "$1" ;;
+            *.tgz)      tar -zxvf  "$1" ;;
+            *.tar)      tar -xvf   "$1" ;;
+            *.tar.xz)   tar -xvf   "$1" ;;
+            *.bz2)      bunzip2    "$1" ;;
+            *.gz)       gunzip     "$1" ;;
+            *.zip)      unzip      "$1" ;;
+            *.ZIP)      unzip      "$1" ;;
+            *.7z)       7z x       "$1" ;;
+            *.Z)        uncompress "$1" ;;
+            *.rar)      unrar x    "$1" ;;
+            '')         echo "usage: extract <file>" ;;
+            *)          echo "'$1' unknown format. Unable to extract." ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# Connect to the bluetooth adapter
+bt () {
+    case $1 in
+        start) echo -e 'power on\nconnect 00:02:5B:00:FF:04\nquit' | bluetoothctl ;;
+        stop) echo -e 'disconnect 00:02:5B:00:FF:04\npower off\nquit' | bluetoothctl ;;
+    esac
+}
+
+backup_lacie () {
+    echo rsync ~/pictures/ /run/media/jan/LACIE/jan/pictures/ \
+    -avuP --delete --modify-window=10
+}
+
+backup_porsche () {
+    echo rsync /home/jan/ /run/media/jan/PORSCHE/jan/ \
+    --exclude={pictures,.cache,.mozilla} \
+    -avuP --delete --modify-window=10
+}

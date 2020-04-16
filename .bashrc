@@ -11,11 +11,14 @@ shopt -s checkwinsize
 # Correct minor spelling mistakes in cd command
 shopt -s cdspell
 
+# Load environment
+[[ -f ~/.env ]] && . ~/.env
+
 # Load aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 
-# Load environment
-[[ -f ~/.env ]] && . ~/.env
+# Load functions
+[[ -f ~/.functions ]] && . ~/.functions
 
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -51,137 +54,3 @@ GIT_PS1_SHOWUPSTREAM="auto"
 PS1='[\u@\h \W]\$ '
 PS1='\n\[\e[1;32m\]\u@\h \[\e[1;0m\]\w\[\e[0m\]\[\e[1;30m\] '`
    `'$(__git_ps1 "(%s)")\[\e[1;0m\]\n$ '
-
-###############################################################################
-# FUNCTIONS
-###############################################################################
-
-# Set man page colors to make man pages more readable.
-man () {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[38;5;246m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-    man "$@"
-}
-
-backup_home_external() {
-    local dryrun='dry'
-    case $1 in
-        go)   dryrun=''   ;;
-        test) dryrun='-n' ;;
-        *) echo "Select 'go' (do backup) or 'test' to do dry run"; return; ;;
-    esac
-    echo rsync -av --update --modify-window=10 \
-        --exclude '*.iso' \
-        --exclude '.cache' \
-        --exclude '.thumbnails' \
-        --exclude '.local' \
-        --exclude '.adobe' \
-        --exclude '.mozilla' \
-        $dryrun $HOME $2
-}
-
-backup_remote () {
-    local host=$1
-    local dir=$2
-    echo rsync ~/$dir/ $host:~/$dir/ -avzuP $3 $4
-}
-
-restore_remote () {
-    local host=$1
-    local dir=$2
-    echo rsync $host:~/$dir/ ~/$dir/ -avzuP $3 $4
-}
-
-# Display duplicate files in the current directory
-find_duplicates () {
-    find -not -empty -type f -printf "%s\n" | \
-    sort -rn | \
-    uniq -d | \
-    xargs -I{} -n1 find -type f -size {}c -print0 | \
-    xargs -0 md5sum | \
-    sort | \
-    uniq -w32 --all-repeated=separate
-}
-
-ex () {
-    if [ -f $1 ]; then
-        case $1 in
-            *.tar.bz2)  tar -jxvf  "$1" ;;
-            *.tbz2)     tar -jxvf  "$1" ;;
-            *.tar.gz)   tar -zxvf  "$1" ;;
-            *.tgz)      tar -zxvf  "$1" ;;
-            *.tar)      tar -xvf   "$1" ;;
-            *.tar.xz)   tar -xvf   "$1" ;;
-            *.bz2)      bunzip2    "$1" ;;
-            *.gz)       gunzip     "$1" ;;
-            *.zip)      unzip      "$1" ;;
-            *.ZIP)      unzip      "$1" ;;
-            *.7z)       7z x       "$1" ;;
-            *.Z)        uncompress "$1" ;;
-            *.rar)      unrar x    "$1" ;;
-            '')         echo "usage: extract <file>" ;;
-            *)          echo "'$1' unknown format. Unable to extract." ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-vnc_connect () {
-    local disp=-1
-    local host=$1
-
-    case $2 in
-        phys)       disp=0  ;;
-        virt)       disp=1  ;;
-        *)          echo "usage: vnc_connect <host> (phys | virt)"; return ;;
-    esac
-
-    vncviewer -via $host -passwd ~/.vnc/passwd.$host localhost:$disp
-}
-
-vnc_start () {
-    case $1 in
-        # Access via port 5900
-        phys)  x11vnc -display :0 -rfbauth ~/.vnc/x11passwd    ;;
-        # Access via port 5901
-        # (The 'dbus-launch vncserver ...' starts KDE in the vnc window.)
-        # -alwaysshared: always treat incoming connections as shared
-        # -localhost: only allow connections from same machine
-        virt) dbus-launch vncserver -geometry 1920x1200 \
-                                                   -nevershared -localhost :1 ;;
-        *) echo "usage: vnc_start (phys | virt)" ;;
-    esac
-}
-
-vnc_stop () {
-    case $1 in
-        phys) vncserver -kill :0  ;;
-        virt) vncserver -kill :1  ;;
-        list) vncserver -list ;;
-        *) echo "usage: vnc_stop (phys | virt | list)" ;;
-    esac
-}
-
-search () {
-    grep -r $1 * --exclude-dir=other --exclude="jquery*" --exclude-dir=dev*
-}
-
-compare_dirs () {
-    find $1 -type f -print0 | sort | xargs -0 sha1sum > ~/dir1
-    find $2 -type f -print0 | sort | xargs -0 sha1sum > ~/dir2
-    diffuse ~/dir1 ~/dir2
-}
-
-# Connect to the bluetooth adapter
-bt () {
-    case $1 in
-        start) echo -e 'power on\nconnect 00:02:5B:00:FF:04\nquit' | bluetoothctl ;;
-        stop) echo -e 'disconnect 00:02:5B:00:FF:04\npower off\nquit' | bluetoothctl ;;
-    esac
-}
