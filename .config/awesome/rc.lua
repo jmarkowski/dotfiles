@@ -43,6 +43,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init(gears.filesystem.get_dir("config") .. "themes/arch/theme.lua")
+-- beautiful.wallpaper = os.getenv("HOME") .. "/pictures/backgrounds/panorama.jpg"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
