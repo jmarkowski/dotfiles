@@ -337,7 +337,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
     -- Screenshot
-     awful.key({ }, "Print", function () awful.util.spawn("xfce4-screenshooter", false) end)
+     awful.key({ }, "Print", function ()
+         awful.util.spawn("xfce4-screenshooter -s " .. os.getenv("HOME") .. "/Desktop", false)
+     end)
 )
 
 clientkeys = gears.table.join(
