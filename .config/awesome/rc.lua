@@ -47,7 +47,7 @@ beautiful.init(gears.filesystem.get_dir("config") .. "themes/arch/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
-launch_browser = function () awful.spawn("firefox") end
+launch_browser = function () awful.spawn("firefox", {floating=false, maximized=false}) end
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 launch_terminal = function() awful.spawn(terminal) end
@@ -286,12 +286,12 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", launch_terminal,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "b", launch_browser,
-              {description = "open a browser", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
+    awful.key({ modkey,           }, "b", launch_browser,
+              {description = "open a browser", group = "client"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
