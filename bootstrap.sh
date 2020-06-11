@@ -138,4 +138,12 @@ fi
 print ""
 print_ok "Finished!"
 
+# POST-INSTALLATION ############################################################
+print ""
+print "Post installation:"
+print ""
+print "Install VIM plugins:"
+print "    $ vim +PluginInstall +qall"
+print ""
+
 exit 0;
