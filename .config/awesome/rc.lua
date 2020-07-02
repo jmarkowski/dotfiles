@@ -51,6 +51,9 @@ launch_browser = function () awful.spawn("firefox", {floating=false, maximized=f
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 launch_terminal = function() awful.spawn(terminal) end
+launch_file_manager = function()
+    awful.spawn("thunar")
+end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -286,6 +289,8 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", launch_terminal,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "t", launch_file_manager,
+              {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
