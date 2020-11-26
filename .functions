@@ -63,3 +63,27 @@ backup_porsche () {
     --exclude={pictures,.cache,.mozilla} \
     -avuP --delete --modify-window=10
 }
+
+vpnstart () {
+    cmd="sudo systemctl start openvpn-client@protonvpn"
+    echo $cmd
+    eval $cmd
+    systemctl status openvpn-client@protonvpn
+}
+
+vpnstop () {
+    cmd="sudo systemctl stop openvpn-client@protonvpn"
+    echo $cmd
+    eval $cmd
+    systemctl status openvpn-client@protonvpn
+}
+
+vpnstatus () {
+    cmd="systemctl status openvpn-client@protonvpn"
+    echo $cmd
+    eval $cmd
+}
+
+vpnedit () {
+    cd /etc/openvpn/client
+}
