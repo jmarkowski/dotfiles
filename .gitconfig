@@ -39,6 +39,7 @@
 
 [alias]
     lg  = log --graph --pretty=format:'%C(yellow bold)%h%Creset (%ad) %C(bold)%an:%Creset %s %Cgreen%d%Creset' --date=relative
+    lgd = log --graph --pretty=format:'%C(yellow bold)%h%Creset (%ad) %C(bold)%an:%Creset %s %Cgreen%d%Creset' --date=iso
     bit = log --graph --pretty=format:'%C(yellow bold)%h%Creset (%ad) %C(bold)%an:%Creset %s %Cgreen%d%Creset' --date=relative -15
 
 [push]
