@@ -22,7 +22,7 @@
 
 [core]
     excludesfile = $HOME/.gitignore
-    editor = vi
+    editor = vim
     abbrev = 10
     pager = less
     whitespace = trailing-space
