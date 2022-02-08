@@ -24,6 +24,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 
 call vundle#end()           " required
+
+" Plug plugins (https://github.com/junegunn/vim-plug)
+call plug#begin()
+call plug#end()
+
 filetype plugin indent on   " required (file type detection)
 
 " Installation of Plugins:
