@@ -8,6 +8,8 @@ DOTFILES_DIR=$DEST_DIR/.dotfiles
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+GREY='\033[1;37m'
 NONE='\033[0m'
 
 ################################################################################
@@ -29,6 +31,12 @@ print_err () {
     echo -e "$RED""ERROR: $*""$NONE"
 }
 
+print_bold () {
+    echo ""
+    echo -e "$GREY""$*""$NONE"
+    echo ""
+}
+
 bail () {
     print_err $*
     exit 99
@@ -41,7 +49,7 @@ input () {
 ################################################################################
 # MAIN
 ################################################################################
-# PRELIMINARY CONDITIONS #######################################################
+print_bold "STEP 1/7: Check environment"
 
 check_command rsync
 check_command git
@@ -58,14 +66,19 @@ if ! [ -z ${TMPDIR+x} ]; then
     bail "TMPDIR is defined as $TMPDIR and boostrapping won't work"
 fi
 
-print "Fetching submodules ... \c"
+print_bold "STEP 2/7: Fetch submodules"
+
+print "Initializing submodules ... \c"
 git submodule init && git submodule update > /dev/null
 print_ok "OK"
 
-TEMP_DIR=`mktemp -d`
+print_bold "STEP 3/7: Create temporary working environment"
 
-# COPY TO TEMPORARY LOCATION ###################################################
-print "Copying dotfiles into temporary directory: $TEMP_DIR ... \c"
+print "Creating working directory ... \c"
+TEMP_DIR=`mktemp -d`
+print_ok "OK"
+
+print "Copying dotfiles into $TEMP_DIR ... \c"
 rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
                                 --exclude=.gitmodules \
                                 --exclude=bootstrap.sh \
@@ -74,11 +87,8 @@ rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
                                  -ah
 print_ok "OK"
 
-print ""
-print "Copying dotfiles to: $DEST_DIR/"
-print ""
+print_bold "STEP 4/7: Copy working files to destination"
 
-# COPY ALL FILES TO DESTINATION DIRECTORY ######################################
 for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
 do
     target_file=$DEST_DIR/$file
@@ -94,11 +104,8 @@ do
     print_ok "OK"
 done
 
-print ""
-print "Updating directories to: $DEST_DIR/ ..."
-print ""
+print_bold "STEP 5/7: Copy working directories to destination"
 
-# COPY ALL DIRECTORIES TO DESTINATION DIRECTORY ################################
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
 do
     target_dir=$DEST_DIR/$dir
@@ -114,13 +121,14 @@ do
     print_ok "OK"
 done
 
-# CLEANUP ######################################################################
-print ""
-print "Cleaning up ... \c"
+print_bold "STEP 6/7: Clean up"
+
+print "Removing working directory ... \c"
 rm -rf $TEMP_DIR
 print_ok "OK"
 
-# CONFIGURATION ################################################################
+print_bold "STEP 7/7: Configuration"
+
 print "Update git configuration file (enter blank to ignore):"
 input "> Name : "
 read name
@@ -134,14 +142,10 @@ if [[ $email ]]; then
     git config --file $DEST_DIR/.gitconfig user.email $email
 fi
 
-# DONE #########################################################################
-print ""
-print_ok "Finished!"
+print_bold "Finished!"
 
 # POST-INSTALLATION ############################################################
-print ""
-print "Post installation:"
-print ""
+print_bold "Post Installation tasks"
 print "Install VIM plugins:"
 print "    $ vim +PluginInstall +qall"
 print ""
