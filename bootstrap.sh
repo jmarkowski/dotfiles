@@ -3,8 +3,8 @@
 ################################################################################
 # GLOBALS
 ################################################################################
-TARGET_DIR=$HOME
-DOTFILES_DIR=$TARGET_DIR/.dotfiles
+DEST_DIR=$HOME
+DOTFILES_DIR=$DEST_DIR/.dotfiles
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -75,18 +75,18 @@ rsync $DOTFILES_DIR/ $TEMP_DIR/ --exclude=.git \
 print_ok "OK"
 
 print ""
-print "Copying dotfiles to: $TARGET_DIR/"
+print "Copying dotfiles to: $DEST_DIR/"
 print ""
 
-# COPY ALL FILES TO TARGET DIRECTORY ###########################################
+# COPY ALL FILES TO DESTINATION DIRECTORY ######################################
 for file in `find $TEMP_DIR/ -maxdepth 1 -type f -printf "%f\n"`
 do
-    target_file=$TARGET_DIR/$file
-    is_file_different=$(rsync $TEMP_DIR/$file $TARGET_DIR/ -nc --out-format %i)
+    target_file=$DEST_DIR/$file
+    is_file_different=$(rsync $TEMP_DIR/$file $DEST_DIR/ -nc --out-format %i)
 
     if [[ $is_file_different ]] && [[ $is_file_different != *"+" ]]; then
         mv $target_file ${target_file}.old
-        print "Moved already existing $target_file to ${target_file}.old"
+        print "Renamed existing $target_file to ${target_file}.old"
     fi
 
     print "Copying $file ... \c"
@@ -95,14 +95,14 @@ do
 done
 
 print ""
-print "Updating directories to: $TARGET_DIR/ ..."
+print "Updating directories to: $DEST_DIR/ ..."
 print ""
 
-# COPY ALL DIRECTORIES TO TARGET DIRECTORY #####################################
+# COPY ALL DIRECTORIES TO DESTINATION DIRECTORY ################################
 for dir in `find $TEMP_DIR/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2`
 do
-    target_dir=$TARGET_DIR/$dir
-    is_dir_different=$(rsync $TEMP_DIR/$dir $TARGET_DIR -ncr --out-format %i)
+    target_dir=$DEST_DIR/$dir
+    is_dir_different=$(rsync $TEMP_DIR/$dir $DEST_DIR -ncr --out-format %i)
 
     if [[ $is_dir_different ]] && [[ $is_dir_different == *"."* ]]; then
         mv $target_dir ${target_dir}.old
@@ -110,7 +110,7 @@ do
     fi
 
     print "Copying $dir/ ... \c"
-    rsync $TEMP_DIR/$dir $TARGET_DIR -cr
+    rsync $TEMP_DIR/$dir $DEST_DIR -cr
     print_ok "OK"
 done
 
@@ -128,10 +128,10 @@ input "> Email: "
 read email
 
 if [[ $name ]]; then
-    git config --file $TARGET_DIR/.gitconfig user.name $name
+    git config --file $DEST_DIR/.gitconfig user.name $name
 fi
 if [[ $email ]]; then
-    git config --file $TARGET_DIR/.gitconfig user.email $email
+    git config --file $DEST_DIR/.gitconfig user.email $email
 fi
 
 # DONE #########################################################################
