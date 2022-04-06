@@ -30,7 +30,7 @@ print_err () {
 }
 
 bail () {
-    error $*
+    print_err $*
     exit 99
 }
 
