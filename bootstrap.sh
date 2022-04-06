@@ -15,7 +15,7 @@ NONE='\033[0m'
 ################################################################################
 # FUNCTIONS
 ################################################################################
-check_command () {
+test_required_command () {
     command -v $1 >/dev/null 2>&1 || bail "Command '$1' not found."
 }
 
@@ -51,10 +51,10 @@ input () {
 ################################################################################
 print_bold "STEP 1/7: Check environment"
 
-check_command rsync
-check_command git
-check_command read
-check_command find
+test_required_command rsync
+test_required_command git
+test_required_command read
+test_required_command find
 
 print "Current directory: $PWD"
 if [ $PWD != $DOTFILES_DIR ]; then
