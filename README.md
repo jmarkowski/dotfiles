@@ -9,3 +9,7 @@ $ git clone https://github.com/jmarkowski/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./bootstrap.sh
 ```
+
+## Install VIM plugins
+
+After your .vimrc is loaded, type `:PluginInstall` to install plugins.

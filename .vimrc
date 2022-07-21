@@ -19,6 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 " vundle#begin/end
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'alvan/vim-closetag'
 Plugin 'justinmk/vim-sneak'
 Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
