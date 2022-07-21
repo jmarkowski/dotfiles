@@ -89,12 +89,13 @@ set tabstop=4           " Number of visual spaces in a tab.
 set expandtab           " Convert tabs to spaces
 
 if has("autocmd")
-autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType sh setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
