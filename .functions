@@ -91,3 +91,7 @@ vpnstatus () {
 vpnedit () {
     cd /etc/openvpn/client
 }
+
+svim () {
+    sudo -E vim $@
+}
