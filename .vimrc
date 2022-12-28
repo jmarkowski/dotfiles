@@ -133,9 +133,6 @@ endfunction
 nnoremap <C-v> :vsp<CR>
 nnoremap <C-h> :sp<CR>
 
-" <enter> scrolls to place cursor at top
-nnoremap <CR> jz<CR>2<C-y>
-
 " Get ctags for all dependent directories
 nmap tt :!ctags
 
