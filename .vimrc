@@ -55,7 +55,6 @@ map <C-k> ,#
 " CUSTOM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let mapleader = ","     " Map <leader> to ','
-syntax enable           " Enable syntax processing
 set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
@@ -185,6 +184,7 @@ colorscheme gruvbox
 set background=dark
 
 "colorscheme jan
+syntax enable           " Enable syntax processing
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
