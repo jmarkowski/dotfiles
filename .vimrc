@@ -23,6 +23,7 @@ Plugin 'alvan/vim-closetag'
 Plugin 'justinmk/vim-sneak'
 Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
+Plugin 'dense-analysis/ale'
 
 call vundle#end()           " required
 
@@ -55,6 +56,7 @@ map <C-k> ,#
 " CUSTOM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let mapleader = ","     " Map <leader> to ','
+syntax enable           " Enable syntax processing
 set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
 set number              " Show line numbers
@@ -181,7 +183,19 @@ colorscheme gruvbox
 set background=dark
 
 "colorscheme jan
-syntax enable           " Enable syntax processing
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE Plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+" Type ":ALEFix" to fix formatting issues
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
