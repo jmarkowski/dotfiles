@@ -97,6 +97,20 @@ autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType sh setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
+autocmd BufEnter *.ejs :setlocal filetype=html
+autocmd BufEnter *.jsx :setlocal filetype=javascript
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BRACKET BEHAVIOUR
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("autocmd")
+" When you are opening a parenthesis, autoclose it and indent properly
+autocmd FileType javascript inoremap (
+ (
+)<C-o>O
+autocmd Filetype javascript setlocal cino+=(s,U1
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
