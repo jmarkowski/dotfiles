@@ -147,6 +147,9 @@ endfunction
 nnoremap <C-v> :vsp<CR>
 nnoremap <C-h> :sp<CR>
 
+" In Normal Mode, cancel search highlighting
+nmap <silent> <BS> :nohlsearch<CR>
+
 " Get ctags for all dependent directories
 nmap tt :!ctags
 
