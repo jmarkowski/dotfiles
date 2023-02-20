@@ -53,6 +53,34 @@ bt () {
     esac
 }
 
+# Scale down an image and add the name of it as a watermark for
+# sharing/developing
+share () {
+    filepath=$1;
+    extension="${filepath##*.}";
+    basename="${filepath%.*}";
+
+    if [ -z "$2" ]; then
+        watermark="${filepath%.*}";
+    else
+        watermark="$2";
+    fi
+
+    convert $filepath \
+        -resize 1024x768 \
+        -pointsize 24 \
+        -draw " \
+            gravity southeast \
+            fill 'rgba(255,190,0,1)' \
+            font-weight 900 \
+            stroke black \
+            stroke-width 1 \
+            text 15,5 \
+            '$watermark' \
+        " \
+        ${basename}.share.${extension}
+}
+
 # Backup music and videos
 backup_lacie () {
     echo rsync ~/music/ /run/media/jan/LACIE/jan/music/ \
