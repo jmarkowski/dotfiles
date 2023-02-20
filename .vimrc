@@ -106,10 +106,8 @@ endif
 " BRACKET BEHAVIOUR
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-" When you are opening a parenthesis, autoclose it and indent properly
-autocmd FileType javascript inoremap (
- (
-)<C-o>O
+" When you are opening a parenthesis and hit enter, close it and indent properly
+autocmd FileType javascript inoremap <buffer> {<CR> {<CR>}<Esc>O
 autocmd Filetype javascript setlocal cino+=(s,U1
 endif
 
