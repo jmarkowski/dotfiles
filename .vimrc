@@ -73,6 +73,18 @@ set tags=./tags,tags;$HOME
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MACOSX Support
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fix backspace behaviour
+set backspace=indent,eol,start
+
+" Fix forward delete behaviour
+inoremap <C-d> <Del>
+
+" Allow the mouse scroll to be used in VIM
+set mouse=a
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SEARCHING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn off search highlight by typing `, `
