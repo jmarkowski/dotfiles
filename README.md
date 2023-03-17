@@ -12,4 +12,12 @@ $ ./bootstrap.sh
 
 ## Install VIM plugins
 
-After your .vimrc is loaded, type `:PluginInstall` to install plugins.
+After the vim configuration files have been copied, especially
+`.vim/bundle/Vundle.vim`, you can install the vundle plugins with:
+
+```
+$ vim +PluginInstall +qall
+```
+
+Alternatively, after your `.vimrc` is loaded, type `:PluginInstall`
+to install the plugins.
