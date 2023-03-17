@@ -94,6 +94,23 @@ set hlsearch            " Highlight matches
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw - FILE EXPLORER
+"   :Explore
+"   :Sexplore (or just :Sex)
+"   :Vexplore
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-b> :Vexplore<CR>
+let g:netrw_banner = 0 "1=show banner
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4 "1=new hz split, 2=new vr split, 3=new tab, 4=prev window
+let g:netrw_altv = 1
+let g:netrw_winsize = 30 "percent of window
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TABS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4        " Number of spaces in manual indent (>>, <<).
