@@ -92,6 +92,11 @@ noremap <leader><space> :nohlsearch<CR>
 set incsearch           " Search details
 set hlsearch            " Highlight matches
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OMNICOMPLETION
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map <C-space> to trigger omnicompletion whlie in insert mode.
+inoremap <C-space> <C-x><C-o>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw - FILE EXPLORER
