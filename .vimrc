@@ -55,7 +55,7 @@ map <C-k> ,#
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let mapleader = ","     " Map <leader> to ','
+let mapleader = ","     " Map <leader> to ','
 syntax enable           " Enable syntax processing
 set nowrapscan          " Do not wrap searching
 set t_Co=256            " To aid the color scheme...
@@ -95,8 +95,8 @@ set hlsearch            " Highlight matches
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OMNICOMPLETION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <C-space> to trigger omnicompletion whlie in insert mode.
-inoremap <C-space> <C-x><C-o>
+" In insert mode, map ',,' to trigger omnicompletion.
+inoremap <leader>, <C-x><C-o>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw - FILE EXPLORER
