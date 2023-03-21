@@ -87,8 +87,8 @@ set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SEARCHING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn off search highlight by typing `, `
-noremap <leader><space> :nohlsearch<CR>
+" In Normal Mode, cancel search highlighting by hitting backspace
+nmap <silent> <BS> :nohlsearch<CR>
 set incsearch           " Search details
 set hlsearch            " Highlight matches
 
@@ -180,9 +180,6 @@ endfunction
 " Window splitting
 nnoremap <C-v> :vsp<CR>
 nnoremap <C-h> :sp<CR>
-
-" In Normal Mode, cancel search highlighting
-nmap <silent> <BS> :nohlsearch<CR>
 
 " Get ctags for all dependent directories
 nmap tt :!ctags
