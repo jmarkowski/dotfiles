@@ -41,7 +41,6 @@ filetype plugin indent on   " required (file type detection)
 " Documentation:
 "   `:h vundle`
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -193,7 +192,6 @@ function! s:ToggleFold()
     echo 'foldmethod is now ' . &l:foldmethod
 endfunction
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -203,20 +201,6 @@ nnoremap <C-h> :sp<CR>
 
 " Get ctags for all dependent directories
 nmap tt :!ctags
-
-" Auto completion
-"imap <tab> <C-p>
-
-" Align text centered
-map mid :center 80<CR>
-"Insert comment lines and right justify text
-map com I/* <ESC>A */<ESC>:ri<CR>
-
-" Insert note and center justify text
-nnoremap <C-n> I/** <ESC>A **/<ESC>:center<CR>
-" Purge all inserted notes
-nnoremap <C-p> :g/\/\*\* [\:A-Za-z0-9 \n\r\*\\\/]* \*\*\//d<CR><C-o>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UNDO
@@ -228,7 +212,6 @@ set undolevels=1000
 set undoreload=10000
 endif
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MOUSE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,7 +220,6 @@ endif
 " :set mouse=a      Enable all mouse behaviour (the default).
 " :set mouse+=v     Enable visual mode (v)
 " :set mouse-=c     Disable mouse in command mode.
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS
