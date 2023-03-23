@@ -24,6 +24,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 Plugin 'dense-analysis/ale'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()           " required
 
@@ -73,6 +74,21 @@ set showmatch           " Highlight matching [{()}]
 " and up until $HOME, stopping at the first hit of the tags file.
 set tags=./tags,tags;$HOME
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CTRLP - full fuzzy file, buffer, mru, tag, ... finder for Vim
+" Use by typing <C-p>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Exclude files and directories using Vim's wildignore.
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" Custom file listing command
+let g:ctrlp_user_command = 'find %s -type f'
+
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MACOSX Support
