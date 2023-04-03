@@ -49,6 +49,15 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
 ###############################################################################
+# FZF keybindings
+#   Ctrl-T: select files in the midst of a prompt
+#   Alt-C : quickly swithc to a selected directory
+#   Ctrl-R: smart searching command history
+###############################################################################
+source /usr/share/fzf/key-bindings.bash
+#source /usr/share/fzf/completion.bash
+
+###############################################################################
 # PROMPT STRINGS
 ###############################################################################
 PS1='[\u@\h \W]\$ '
