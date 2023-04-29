@@ -73,6 +73,9 @@ call plug#end()
 " Load all packages under ~/.vim/pack
 packloadall
 
+" Load all packages under ~/.vimrc/pack
+packloadall
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
