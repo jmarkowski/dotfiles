@@ -70,10 +70,6 @@ set wildmenu            " Visual autocomplete for command menu
 set lazyredraw          " Redraw only when we need to
 set showmatch           " Highlight matching [{()}]
 
-" Look for tags in the directory of the current file, in the current directory
-" and up until $HOME, stopping at the first hit of the tags file.
-set tags=./tags,tags;$HOME
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTRLP - full fuzzy file, buffer, mru, tag, ... finder for Vim
 " Use by typing <C-p>
@@ -155,6 +151,31 @@ autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd BufEnter *.ejs :setlocal filetype=html
 autocmd BufEnter *.jsx :setlocal filetype=javascript
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CTAGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autochdir       " Recursively look, from $PWD, moving up dirs for tags file
+" Look for tags in the directory of the current file, in the current directory
+" and up until $HOME, stopping at the first hit of the tags file.
+set tags=./tags,tags;$HOME
+
+" Create a ctags file at the root of a git repository
+function! CreateCTags()
+    let gitdir = system('git rev-parse --show-toplevel 2> /dev/null')
+
+    if gitdir == ""
+        echo "CreateCTags: Not a git repository"
+        return
+    endif
+
+    let outfile = gitdir[:-2] . "/tags"
+    silent execute "!ctags -R --exclude=.git --exclude=node_modules -f " . outfile . " " . gitdir
+
+    echo "CreateCTags: tags created: " . outfile
+endfunction
+
+map <F9> :call CreateCTags()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BRACKET BEHAVIOUR
