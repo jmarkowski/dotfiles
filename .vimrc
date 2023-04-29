@@ -30,6 +30,7 @@ call vundle#end()           " required
 
 " Plug plugins (https://github.com/junegunn/vim-plug)
 call plug#begin()
+Plug 'prabirshrestha/vim-lsp'
 call plug#end()
 
 filetype plugin indent on   " required (file type detection)
@@ -235,15 +236,26 @@ set background=dark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE Plugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
+let g:ale_sign_error = '●' "'✘'
+
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_sign_warning = '●' "'⚠'
+
+let g:ale_completion_enabled = 1
+
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_change = 'normal'
+
+let g:ale_javascript_eslint_executable = 'eslint'
+let g:ale_javascript_eslint_use_global = 1
 
 " Type ":ALEFix" to fix formatting issues
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
+let b:ale_linters = ['eslint']
+let b:ale_fixers = ['prettier', 'eslint']
+
+" Type \af to fix all lines
+nnoremap <leader>af :ALEFix<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
