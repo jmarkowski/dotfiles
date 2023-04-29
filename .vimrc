@@ -6,42 +6,72 @@
 set nocompatible            " be iMproved, required
 filetype off                " required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VUNDLE PLUGINS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" All plugins must be included between the vundle#begin and vundle#end
+"
+" Installation of plugins:
+"   Launch `vim` and run `:PluginInstall`
+"   or from the CLI: `vim +PluginInstall +qall`
+"
+" Update plugins:
+"   Run `:PluginUpdate`
+"
+" Removal of plugins:
+"   Delete the "Plugin 'x'" line and run `:PluginClean`
+"
+" Documentation:
+"   `:h vundle`
+
 " Set the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 
 " Initialize vundle and specify the path where Vundle should install plugins
+"
 call vundle#begin()
-
 " Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are various plugins. They must be included between
-" vundle#begin/end
+" Git support in vim
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'alvan/vim-closetag'
-Plugin 'justinmk/vim-sneak'
-Plugin 'vim-airline/vim-airline'
-Plugin 'morhetz/gruvbox'
-Plugin 'dense-analysis/ale'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'craigemery/vim-autotag'
 
+" Delete, change, and add surrounding tags in pairs
+Plugin 'tpope/vim-surround'
+
+" Autoclose HTML tags
+Plugin 'alvan/vim-closetag'
+
+" Add a status line
+Plugin 'vim-airline/vim-airline'
+
+" Pastel retro groove theme and colors
+Plugin 'morhetz/gruvbox'
+
+" ALE (asynchronous lint engine) to provide linting while editing files
+Plugin 'dense-analysis/ale'
+
+" Full fuzzy path search
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Re-run ctags when saving source files
+Plugin 'craigemery/vim-autotag'
 call vundle#end()           " required
 
-" Plug plugins (https://github.com/junegunn/vim-plug)
+filetype plugin indent on   " required (file type detection)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUG PLUGINS (https://github.com/junegunn/vim-plug)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
 call plug#end()
 
-filetype plugin indent on   " required (file type detection)
-
-" Installation of Plugins:
-"   Launch `vim` and run `:PluginInstall`
-"   or from the CLI: `vim +PluginInstall +qall`
-"
-" Documentation:
-"   `:h vundle`
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM PACK
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load all packages under ~/.vim/pack
+packloadall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN MAPPING
