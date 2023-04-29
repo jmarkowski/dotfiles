@@ -56,6 +56,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 " Re-run ctags when saving source files
 Plugin 'craigemery/vim-autotag'
+
+" Browse the tags of the current file
+Plugin 'majutsushi/tagbar'
 call vundle#end()           " required
 
 filetype plugin indent on   " required (file type detection)
@@ -210,6 +213,9 @@ function! CreateCTags()
 endfunction
 
 map <F9> :call CreateCTags()<CR>
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BRACKET BEHAVIOUR
