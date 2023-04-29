@@ -25,6 +25,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'morhetz/gruvbox'
 Plugin 'dense-analysis/ale'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'craigemery/vim-autotag'
 
 call vundle#end()           " required
 
