@@ -575,3 +575,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autorun.sh")
+awful.spawn("xfce4-clipman")
