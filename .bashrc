@@ -46,6 +46,19 @@ HISTFILESIZE=2000       # Number of lines contained in history file
 shopt -s histappend     # Append to the history file, don't overwrite it
 
 ###############################################################################
+# SHELL COLORS
+# https://github.com/chriskempson/base16-shell
+###############################################################################
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
+
+# Set the base16 theme
+base16_helios
+
+###############################################################################
 # GIT
 ###############################################################################
 source ~/bin/git-completion.bash
