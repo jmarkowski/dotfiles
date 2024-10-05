@@ -14,6 +14,9 @@ shopt -s checkwinsize
 # Correct minor spelling mistakes in cd command
 shopt -s cdspell
 
+# Limit recursive functions (see 'man bash')
+[[ -z "$FUNCNEST" ]] && export FUNCNEST=100
+
 # Load environment
 [[ -f ~/.env ]] && . ~/.env
 
