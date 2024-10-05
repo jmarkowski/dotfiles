@@ -10,10 +10,14 @@ alias rm='rm -i'
 alias ..='cd ..'
 alias vi='/usr/bin/vim'
 alias grep='grep -n -B 4 -A 4 --colour --exclude tags'
+alias open="xdg-open"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Enable tab completion when using 'sudo' command
 alias sudo='sudo '
+
+# Quickly activate python environment
+alias pyenv="source *env/bin/activate"
 
 # Alert alias for long running commands. Use case example: $ sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal '`
