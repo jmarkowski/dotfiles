@@ -84,3 +84,13 @@ share () {
 svim () {
     sudo -E vim $@
 }
+
+ytdownloadplaylist () {
+   # Example playlist URL: https://www.youtube.com/playlist?list=RANDOMPLAYLISTID
+   yt-dlp -f best -ciw -o "%(playlist_index)s - %(title)s.%(ext)s" $1
+}
+
+ytdownload () {
+    url=$1
+    yt-dlp -f best $url
+}
