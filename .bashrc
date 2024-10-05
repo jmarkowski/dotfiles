@@ -73,3 +73,14 @@ _set_prompt_strings() {
 }
 _set_prompt_strings
 unset -f _set_prompt_strings
+
+###############################################################################
+# BINDINGS
+###############################################################################
+# Allows <UP> and <DOWN> to be used for finding a command in history
+# with some initial letters of the past command.
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# Bind <CTRL+O> to open files directly with preferred application
+bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
