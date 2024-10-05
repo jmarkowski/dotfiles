@@ -81,45 +81,6 @@ share () {
         ${basename}.share.${extension}
 }
 
-# Backup music and videos
-backup_lacie () {
-    echo rsync ~/music/ /run/media/jan/LACIE/jan/music/ \
-    -avuP --delete --modify-window=10
-    echo rsync ~/videos/ /run/media/jan/LACIE/jan/videos/ \
-    -avuP --delete --modify-window=10
-}
-
-# Backup everything but memories, music, and videos
-backup_porsche () {
-    echo rsync /home/jan/ /run/media/jan/PORSCHE/jan/ \
-    --exclude={memories,.cache,.mozilla,videos,music} \
-    -avuP --delete --modify-window=10
-}
-
-vpnstart () {
-    cmd="sudo systemctl start openvpn-client@protonvpn"
-    echo $cmd
-    eval $cmd
-    systemctl status openvpn-client@protonvpn
-}
-
-vpnstop () {
-    cmd="sudo systemctl stop openvpn-client@protonvpn"
-    echo $cmd
-    eval $cmd
-    systemctl status openvpn-client@protonvpn
-}
-
-vpnstatus () {
-    cmd="systemctl status openvpn-client@protonvpn"
-    echo $cmd
-    eval $cmd
-}
-
-vpnedit () {
-    cd /etc/openvpn/client
-}
-
 svim () {
     sudo -E vim $@
 }
