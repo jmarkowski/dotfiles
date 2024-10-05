@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# If running as 'root', be safe and exit this script immediately
+[[ "$(whoami)" = "root" ]] && return
+
 # Check the window size and update LINES and COLUMNS after each command
 shopt -s checkwinsize
 
