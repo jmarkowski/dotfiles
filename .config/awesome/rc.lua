@@ -126,6 +126,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+mytextclock.font = "Monospace 12"
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -582,6 +583,8 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity = 1 end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.95 end)
 -- }}}
+
+beautiful.font = "Monospace 12"
 
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autorun.sh")
 awful.spawn("xfce4-clipman")
