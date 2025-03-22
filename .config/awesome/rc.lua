@@ -346,7 +346,16 @@ globalkeys = gears.table.join(
     -- Screenshot
      awful.key({ }, "Print", function ()
          awful.util.spawn("xfce4-screenshooter -s " .. os.getenv("HOME") .. "/Desktop", false)
-     end)
+     end),
+
+    -- Brightness control
+    awful.key({}, "XF86MonBrightnessUp", function ()
+        awful.util.spawn("xbacklight -inc 2", false)
+    end, {description = "increase brightness", group = "custom"}),
+
+    awful.key({}, "XF86MonBrightnessDown", function ()
+        awful.util.spawn("xbacklight -dec 2", false)
+    end, {description = "decrease brightness", group = "custom"})
 )
 
 clientkeys = gears.table.join(
