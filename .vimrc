@@ -337,7 +337,8 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_change = 'normal'
 
 let g:ale_javascript_eslint_executable = 'eslint'
-let g:ale_javascript_eslint_use_global = 1
+" Use local installations of eslint, not global.
+let g:ale_javascript_eslint_use_global = 0
 
 " Type ":ALEFix" to fix formatting issues
 let b:ale_linters = ['eslint']
