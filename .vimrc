@@ -90,7 +90,8 @@ map <C-k> ,#
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","     " Map <leader> to ','
+" <Space> is rarely used in normal mode and most popular as a leader key.
+let mapleader = " "     " Map <leader> to ' '
 set timeoutlen=200      " Timeout after <leader> is pressed to get next key.
 
 syntax enable           " Enable syntax processing
