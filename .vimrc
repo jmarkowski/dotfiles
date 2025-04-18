@@ -83,6 +83,7 @@ filetype plugin indent on   " required (file type detection)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -128,6 +129,11 @@ map <C-k> ,#
 
 " See all buffers when there's only one tab open
 "let g:airline#extensions#tabline#enabled = 1
+
+" PLUGIN: Sneak
+" Replace 'f' with Sneak
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTRLP - full fuzzy file, buffer, mru, tag, ... finder for Vim
