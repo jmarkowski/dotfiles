@@ -76,16 +76,8 @@ call plug#end()
 " Load all packages under ~/.vim/pack
 packloadall
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN MAPPING
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mark.vim
-" Map these keys to search Marked items (from mark.vim plugin)
-map <C-j> ,*
-map <C-k> ,#
-
-" See all buffers when there's only one tab open
-"let g:airline#extensions#tabline#enabled = 1
+" Load all packages under ~/.vimrc/pack
+packloadall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM CONFIGURATION
@@ -104,6 +96,18 @@ set textwidth=80        " Text wrapping at 80 columns
 set wildmenu            " Visual autocomplete for command menu
 set lazyredraw          " Redraw only when we need to
 set showmatch           " Highlight matching [{()}]
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN MAPPING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mark.vim
+" Map these keys to search Marked items (from mark.vim plugin)
+map <C-j> ,*
+map <C-k> ,#
+
+" See all buffers when there's only one tab open
+"let g:airline#extensions#tabline#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTRLP - full fuzzy file, buffer, mru, tag, ... finder for Vim
