@@ -1,34 +1,34 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VUNDLE PLUGINS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle : Vim Plugin Manager
 "
 " git@github.com:VundleVim/Vundle.vim.git
+"
+" Installation of vundle plugins:
+"   :PluginInstall
+"   (or from the CLI: `vim +PluginInstall +qall`)
+"
+" Update plugins:
+"   :PluginUpdate
+"
+" Removal of plugins:
+"   Delete the "Plugin 'x'" line
+"   :PluginClean
+"
+" Documentation:
+"   :h vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible            " be iMproved, required
 filetype off                " required
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VUNDLE PLUGINS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" All plugins must be included between the vundle#begin and vundle#end
-"
-" Installation of plugins:
-"   Launch `vim` and run `:PluginInstall`
-"   or from the CLI: `vim +PluginInstall +qall`
-"
-" Update plugins:
-"   Run `:PluginUpdate`
-"
-" Removal of plugins:
-"   Delete the "Plugin 'x'" line and run `:PluginClean`
-"
-" Documentation:
-"   `:h vundle`
 
 " Set the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 
 " Initialize vundle and specify the path where Vundle should install plugins
 "
+
+" All vundle plugins must be included between the vundle#begin and vundle#end
 call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -66,12 +66,32 @@ filetype plugin indent on   " required (file type detection)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUG PLUGINS (https://github.com/junegunn/vim-plug)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-plug : A minimalist Vim plugin manager
+"
+" git@github.com:junegunn/vim-plug.git
+"
+" Installation of vim-plug plugins:
+"   :PlugInstall
+"   (or from the CLI: `vim +PlugInstall +qall`)
+"
+" Update plugins:
+"   :PlugUpdate
+"
+" Removal of plugins:
+"   Delete the "Plugin 'x'" line
+"   :PlugClean
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM PACK
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim packages : The native package manager for Vim
+"
+" Documentation:
+"   :h packages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load all packages under ~/.vim/pack
 packloadall
