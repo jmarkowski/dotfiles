@@ -118,22 +118,49 @@ set wildmenu            " Visual autocomplete for command menu
 set lazyredraw          " Redraw only when we need to
 set showmatch           " Highlight matching [{()}]
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN MAPPING
+" PLUGIN SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mark.vim
+" PLUGIN: .vim/plugin/mark.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map these keys to search Marked items (from mark.vim plugin)
 map <C-j> ,*
 map <C-k> ,#
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: 'vim-airline/vim-airline'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " See all buffers when there's only one tab open
 "let g:airline#extensions#tabline#enabled = 1
-
-" PLUGIN: Sneak
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: 'justinmk/vim-sneak'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Replace 'f' with Sneak
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN: 'dense-analysis/ale'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+let g:ale_sign_error = '●' "'✘'
+
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_sign_warning = '●' "'⚠'
+
+let g:ale_completion_enabled = 1
+
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_change = 'normal'
+
+let g:ale_javascript_eslint_executable = 'eslint'
+" Use local installations of eslint, not global.
+let g:ale_javascript_eslint_use_global = 0
+
+" Type ":ALEFix" to fix formatting issues
+let b:ale_linters = ['eslint']
+let b:ale_fixers = ['prettier', 'eslint']
+
+" Type \af to fix all lines
+nnoremap <leader>af :ALEFix<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTRLP - full fuzzy file, buffer, mru, tag, ... finder for Vim
@@ -321,31 +348,6 @@ colorscheme gruvbox
 set background=dark
 
 "colorscheme jan
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ALE Plugin
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-let g:ale_sign_error = '●' "'✘'
-
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:ale_sign_warning = '●' "'⚠'
-
-let g:ale_completion_enabled = 1
-
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_change = 'normal'
-
-let g:ale_javascript_eslint_executable = 'eslint'
-" Use local installations of eslint, not global.
-let g:ale_javascript_eslint_use_global = 0
-
-" Type ":ALEFix" to fix formatting issues
-let b:ale_linters = ['eslint']
-let b:ale_fixers = ['prettier', 'eslint']
-
-" Type \af to fix all lines
-nnoremap <leader>af :ALEFix<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOGROUPS
