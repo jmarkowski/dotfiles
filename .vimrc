@@ -327,6 +327,8 @@ set undodir=$HOME/.vim/undodir
 set undofile
 set undolevels=1000
 set undoreload=10000
+" Disable undo for *.notes files
+autocmd BufRead,BufNewFile *.notes setlocal noundofile
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
