@@ -1,0 +1,11 @@
+{
+    "editor.renderWhitespace": "trailing",
+    "editor.cursorStyle": "block",
+    "vim.cursorStylePerMode.insert": "line",
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.sneak": true,
+    "vim.sneakReplacesF": true,
+    "vim.vimrc.enable": true,
+    "vim.searchHighlightColor": "rgba(250, 240, 170, 0.5)",
+    "files.insertFinalNewline": true
+}
