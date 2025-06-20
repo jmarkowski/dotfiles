@@ -203,7 +203,7 @@ set hlsearch            " Highlight matches
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OMNICOMPLETION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" In insert mode, map ',,' to trigger omnicompletion.
+" In insert mode, map ' ,' to trigger omnicompletion.
 inoremap <leader>, <C-x><C-o>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
