@@ -40,3 +40,4 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Custom, machine-specific aliases:
+alias battery='cat /sys/class/power_supply/BAT0/capacity'
