@@ -349,7 +349,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
     -- Screenshot
      awful.key({ }, "Print", function ()
-         awful.util.spawn("xfce4-screenshooter -s " .. os.getenv("HOME") .. "/Desktop", false)
+         awful.util.spawn("xfce4-screenshooter -c -s " .. os.getenv("HOME") .. "/Desktop", false)
      end),
 
     -- Brightness control
