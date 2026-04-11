@@ -599,5 +599,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 beautiful.font = "Monospace 12"
 
-awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autorun.sh")
+-- Start the clipboard manager so clipboard contents persist after a window closes
 awful.spawn("xfce4-clipman")
+
+-- Configure and setup the screens
+awful.spawn(gears.filesystem.get_dir("config") .. "autorun.sh")
