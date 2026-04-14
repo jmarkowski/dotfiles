@@ -242,6 +242,8 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+-- Available Keybindings: a, e, g, i, q, u, v, y, z
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -390,7 +392,7 @@ clientkeys = gears.table.join(
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+    awful.key({ modkey,           }, "y",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -599,8 +601,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity = 1 end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.95 end)
 -- }}}
-
-beautiful.font = "Monospace 12"
 
 -- Start the clipboard manager so clipboard contents persist after a window closes
 awful.spawn("xfce4-clipman")
