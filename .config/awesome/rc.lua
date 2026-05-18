@@ -374,7 +374,12 @@ globalkeys = gears.table.join(
 
     awful.key({}, "XF86AudioMute", function()
         awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    end, {description = "mute", group = "media"})
+    end, {description = "mute", group = "media"}),
+
+    -- Photo picking
+    awful.key({ modkey }, "g", function()
+        awful.spawn(os.getenv("HOME") .. "/bin/pick-for-print.sh")
+    end, {description = "add photo to usb photo album", group = "photos"})
 )
 
 clientkeys = gears.table.join(
