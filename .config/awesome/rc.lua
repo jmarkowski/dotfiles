@@ -43,7 +43,17 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init(gears.filesystem.get_dir("config") .. "themes/arch/theme.lua")
--- beautiful.wallpaper = os.getenv("HOME") .. "/pictures/backgrounds/panorama.jpg"
+
+-- Make notifications bigger
+beautiful.init(gears.filesystem.get_dir("config") .. "themes/arch/theme.lua")
+
+-- Make notifications bigger
+naughty.config.defaults.font       = "Monospace 14"
+naughty.config.defaults.icon_size  = 48
+naughty.config.defaults.width      = 400
+naughty.config.defaults.margin     = 12
+naughty.config.defaults.border_width = 2
+naughty.config.defaults.position = "top_middle"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
